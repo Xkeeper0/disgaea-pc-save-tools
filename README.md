@@ -21,3 +21,12 @@ Most of the text in the save file is in Shift-JIS format, so have fun with that.
 
 Please follow the style used in this (even if it isn't very good). Comments and documentation appreciated.
 Maybe a text file describing how the format(s) work in the future.
+
+
+## Components
+
+* `chunky.php`: Basis for reading defined segments of a file
+* `savefile.php`: Handles decrypting the save file itself
+* `savedata.php`: Handles the save data chunk
+* `ykcmp.php`: Decompresses `YKCMP_V1` data (like the ... save data)
+* `test.php`: Hastily-made script to put all the above to work
