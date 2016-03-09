@@ -2,4 +2,6 @@
 *.dat
 *.BIN
 *.bin
-saves/
+
+# Testing folder with a few saves
+# saves/

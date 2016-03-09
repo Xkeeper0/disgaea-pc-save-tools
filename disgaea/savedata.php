@@ -2,7 +2,7 @@
 
 	namespace Disgaea;
 
-	class SaveData extends ChunkyFileFormat	{
+	class SaveData extends DataStruct	{
 
 		public	$data			= "";
 		public	$dataChunks		= array(

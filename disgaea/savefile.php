@@ -2,11 +2,11 @@
 
 	namespace Disgaea;
 
-	class SaveFile extends ChunkyFileFormat {
+	class SaveFile extends DataStruct {
 
-		public	$data			= "";
-		public	$saveData		= null;
-		public	$dataChunks		= array(
+		protected	$_data			= "";
+		protected	$_saveData		= null;
+		protected	$_dataChunks		= array(
 			'unknown0'			=> array( 'start' => 0x0000, 'length' => 0x0020,	'type' => "s"),
 			'xorkey'			=> array( 'start' => 0x0020, 'length' => 0x0004,	'type' => "s"),
 			'unknown1'			=> array( 'start' => 0x0024, 'length' => 0x0002,	'type' => "i"),
@@ -26,10 +26,10 @@
 			if (file_exists($f)) {
 				$encryptedData	= file_get_contents($f);
 			} else {
-				throw new Exception("File $f doesn't exist");
+				throw new \Exception("File $f doesn't exist");
 			}
 
-			$this->data		= $this->decrypt($encryptedData);
+			$this->_data	= $this->decrypt($encryptedData);
 		}
 
 		public function decrypt($encryptedData) {
