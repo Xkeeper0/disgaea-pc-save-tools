@@ -2,7 +2,7 @@
 
 	namespace Disgaea;
 
-	class YKCMP {
+	class CompressionHandler {
 
 		protected	$_compressed	= "";
 		protected	$_decompressed	= "";

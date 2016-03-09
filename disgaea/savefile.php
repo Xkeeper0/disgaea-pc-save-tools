@@ -68,7 +68,7 @@
 				throw new Exception("Unexpected magic value: ". $magic);
 			}
 
-			return new YKCMP($this->getChunk("compressedData"), $this->getChunk("decompressedSize"));
+			return new CompressionHandler($this->getChunk("compressedData"), $this->getChunk("decompressedSize"));
 
 		}
 
