@@ -15,23 +15,23 @@
 	$save		= new SaveFile($argv[1]);
 	$saveData	= new SaveData($save->getRawSaveData());
 
-	printf("Unknown val:       %6x\n", $saveData->getChunk("unknown"));
-	printf("Uncompressed size: %6x\n", $saveData->getChunk("decompressedSize"));
-	printf("Compressed size:   %6x\n", $saveData->getChunk("compressedSize"));
-	printf("Actual data len:   %6x\n", strlen($saveData->getChunk("data")));
+	printf("Unknown val:       %6x\n", $save->getChunk("unknown4"));
+	printf("Uncompressed size: %6x\n", $save->getChunk("decompressedSize"));
+	printf("Compressed size:   %6x\n", $save->getChunk("compressedSize"));
+	printf("Actual data len:   %6x\n", strlen($save->getChunk("data")));
 	printf("Total data len:    %6x\n", strlen($save->getRawSaveData()));
 	print "\n";
 
 	file_put_contents("savedata.bin", $save->getRawSaveData());
 
-	$compressedData	= $saveData->getCompressedDataObject();
+	$compressedData	= $save->getSaveObject();
 	$compressedData->setLogLevel(1);
 
 	try {
 		$x	= $compressedData->decompress();
 		file_put_contents("$argv[1].bin", $x);
 		print "Wrote decompressed save file to $argv[1].bin\n";
-		
+
 	} catch (Exception $e) {
 		print "Error decompressing save file: ". $e->getMessage() ."\n";
 		file_put_contents("$argv[1].bin", $compressedData->getDecompressedData());

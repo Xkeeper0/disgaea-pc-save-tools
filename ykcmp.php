@@ -1,5 +1,5 @@
 <?php
-	
+
 	class YKCMP {
 
 		protected	$_compressed	= "";
@@ -117,7 +117,7 @@
 		 * Copy $v bytes from source to decompressed version
 		 */
 		protected function _copy($num) {
-			
+
 			for ($i = $num; $i > 0; $i--) {
 				$this->_log(3, sprintf("%02X", $this->_cb()));
 				$this->_write_db($this->_cb());

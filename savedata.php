@@ -2,7 +2,7 @@
 
 
 	class SaveData extends ChunkyFileFormat	{
-		
+
 		public	$data			= "";
 		public	$dataChunks		= array(
 			'magic'				=> array( 'start' => 0x0000, 'length' => 0x0008,	'type' => "s" ),
