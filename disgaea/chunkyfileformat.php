@@ -1,5 +1,7 @@
 <?php
 
+	namespace Disgaea;
+
 	class ChunkyFileFormat {
 
 		public	$data			= "";

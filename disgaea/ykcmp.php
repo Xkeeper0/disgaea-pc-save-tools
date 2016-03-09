@@ -1,5 +1,7 @@
 <?php
 
+	namespace Disgaea;
+
 	class YKCMP {
 
 		protected	$_compressed	= "";

@@ -1,5 +1,6 @@
 <?php
 
+	namespace Disgaea;
 
 	class SaveData extends ChunkyFileFormat	{
 
