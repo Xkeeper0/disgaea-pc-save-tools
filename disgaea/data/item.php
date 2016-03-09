@@ -11,6 +11,7 @@
 			'innocent02'	=> array( 'start' => 0x0004, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent03'	=> array( 'start' => 0x0008, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent04'	=> array( 'start' => 0x000c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
+			/*
 			'innocent05'	=> array( 'start' => 0x0010, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent06'	=> array( 'start' => 0x0014, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent07'	=> array( 'start' => 0x0018, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
@@ -23,7 +24,8 @@
 			'innocent14'	=> array( 'start' => 0x0034, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent15'	=> array( 'start' => 0x0038, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
 			'innocent16'	=> array( 'start' => 0x003c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			// Repeat 16 times? -- todo, find some way to make a repetitve entry
+			*/
+			// todo, find some way to make a repetitve entry
 
 			'unknown01'		=> array( 'start' => 0x0040, 'length' => 0x0008, 'type' => "h"),
 
@@ -63,7 +65,11 @@
 
 		public function dump() {
 			foreach ($this->_dataChunks as $chunk => $_) {
-				printf("%-20s %s\n", $chunk, $this->getChunk($chunk));
+				$data	= $this->getChunk($chunk);
+				if ($chunk == "id") {
+					$data	= sprintf("%04X [%s]", $data, \Disgaea\Data\ID::getItem($data));
+				}
+				printf("%-20s %s\n", $chunk, $data);
 			}
 		}
 
