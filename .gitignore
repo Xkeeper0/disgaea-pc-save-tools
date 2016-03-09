@@ -5,3 +5,5 @@
 
 # Testing folder with a few saves
 # saves/
+!saves/*.DAT
+!saves/*.dat
