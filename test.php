@@ -7,24 +7,22 @@
 	}
 
 	require_once("utils.php");
-	/*
-	require_once("chunky.php");
-	require_once("savefile.php");
-	require_once("savedata.php");
-	require_once("ykcmp.php");
-	*/
+
+	#var_dump(\Disgaea\Data\ID::getInnocent(0x41));
+	#die();
+
 
 	$save		= new \Disgaea\SaveFile($argv[1]);
 	$saveData	= new \Disgaea\SaveData($save->getRawSaveData());
 
+	/*
 	printf("Unknown val:       %6x\n", $save->getChunk("unknown4"));
 	printf("Uncompressed size: %6x\n", $save->getChunk("decompressedSize"));
 	printf("Compressed size:   %6x\n", $save->getChunk("compressedSize"));
 	printf("Actual data len:   %6x\n", strlen($save->getChunk("data")));
 	printf("Total data len:    %6x\n", strlen($save->getRawSaveData()));
 	print "\n";
-
-	file_put_contents("savedata.bin", $save->getRawSaveData());
+	*/
 
 	$compressedData	= $save->getSaveObject();
 	$compressedData->setLogLevel(1);
@@ -41,8 +39,11 @@
 		die("\n");
 	}
 
-
 	// File created
+
+	// Test item data
+	$item	= new \Disgaea\Data\Item(substr($decompressedData, 0x0BC0, 0x90));
+	$item->dump();
 
 
 	print "\n";

@@ -1,0 +1,498 @@
+0065	Wristband
+0066	Rock Fist
+0067	Double Slap
+0068	Leather Glove
+0069	Iron Claw
+006A	Power Gauntlet
+006B	Hyper Knuckle
+006C	Lethal Knuckle
+006D	Fake Fist
+006E	Cross Counter
+006F	Swift Knuckle
+0070	Magic Cuff
+0071	Poison Knuckle
+0072	Megaton Punch
+0073	Fist of Fury
+0074	Mach Punch
+0075	Spiked Glove
+0076	Bagh Nakh
+0077	Mystic Hand
+0078	Metal Fist
+0079	Silver Arm
+007A	Demonic Fist
+007B	Karate Chop
+007C	Mistral Fist
+007D	Jupiters Fist
+007E	Straight Punch
+007F	Mirage
+0080	Kwanca
+0081	Bahamuts Fist
+0082	Golden Arm
+0083	Crisis
+0084	Diabolic Fist
+0085	Platinum Arm
+0086	Galactica
+0087	Terra Smasher
+0088	Punisher
+0089	Zodiac
+008A	Infernal Fist
+008B	Gods Hand
+008C	Ultimus
+
+00C9	Common Sword
+00CA	Short Sword
+00CB	Swordbreaker
+00CC	Bronze Sword
+00CD	Long Sword
+00CE	Ninja Sword
+00CF	Sharp Edge
+00D0	Bastard Sword
+00D1	Broad Sword
+00D2	Magic Sword
+00D3	2-Pronged Blade
+00D4	Great Sword
+00D5	Taser Sword
+00D6	Mortuus Blade
+00D7	Psychic Sword
+00D8	Stabbing Knife
+00D9	Evil Thwarter
+00DA	Hibernal Sword
+00DB	Muramasa
+00DC	Light Sabre
+00DD	Vajra
+00DE	Mistral Sword
+00DF	Jupiters Sword
+00E0	Bloodlust
+00E1	Masamune
+00E2	Bahamuts Fang
+00E3	Adamant Sword
+00E4	Demon Killer
+00E5	Wyrmslayer
+00E6	Laevateinn
+00E7	Diabolic Sword
+00E8	Crusade
+00E9	Kusanagi
+00EA	Excalibur
+00EB	Shichishi-Tou
+00EC	Infernal Sword
+00ED	Arondight
+00EE	Amano-Hahakiri
+00EF	Cosmic Blade
+00F0	Yoshitsuna
+
+012D	Common Spear
+012E	Iron Lance
+012F	Knights Lance
+0130	Bogus Spear
+0131	Long Spear
+0132	Koshimoto Spear
+0133	Bushido Lance
+0134	Trident
+0135	Paralyzing Spear
+0136	Falcon Lance
+0137	Forgetful Spear
+0138	Black Spear
+0139	Silver Lance
+013A	Kung Fu Spear
+013B	Venomous Spear
+013C	Moonlight
+013D	Skewer
+013E	Mistral Spear
+013F	Jupiters Spear
+0140	Special Lance
+0141	Vile Brilliance
+0142	Golden Lance
+0143	Bone Lance
+0144	Zephyr
+0145	Bahamuts Horn
+0146	Benkei
+0147	Demonic Spear
+0148	Pallas Athene
+0149	Kiyomasa
+014A	Heros Spear
+014B	Platinum Lance
+014C	Li Shuwen
+014D	Diabolic Spear
+014E	Walkeure
+014F	Gungnir
+0150	Gae Bolga
+0151	Chaladholg
+0152	Infernal Spear
+0153	Longinus
+0154	Glorious
+
+0191	Common Bow
+0192	Hunters Bow
+0193	Longbow
+0194	Big Arrow
+0195	Blessed Bow
+0196	Pixie Bow
+0197	Enchanted Arrow
+0198	Warriors Bow
+0199	Sprite Bow
+019A	Venomous Bow
+019B	Elven Bow
+019C	Spirit Bow
+019D	Master Bow
+019E	Bow of Havoc
+019F	Bow of Justice
+01A0	Silver Bow
+01A1	Flex Bow
+01A2	Plasma Arrow
+01A3	Heros Bow
+01A4	Shining Arrow
+01A5	Mistral Bow
+01A6	Jupiters Bow
+01A7	Golden Bow
+01A8	Judgment Arrow
+01A9	Remote Bow
+01AA	Platinum Bow
+01AB	Kuki
+01AC	Bow of Virtue
+01AD	Arcane Bow
+01AE	Yoichis Bow
+01AF	Bahamuts Aim
+01B0	Percival
+01B1	Prometheus
+01B2	Starchaser
+01B3	Diabolic Bow
+01B4	Ulls Bow
+01B5	Fleche Enflammee
+01B6	Infernal Bow
+01B7	Artemis
+01B8	Galaxy
+
+01F5	RQ22 Common
+01F6	Model 24
+01F7	RQ38 Custom
+01F8	Dolphin EX
+01F9	RQ-P38
+01FA	Nether 35
+01FB	KLZ900
+01FC	RQ44 Magnum
+01FD	Model 48
+01FE	Dune Eagle
+01FF	Nether 58
+0200	ZK Auto 13
+0201	Ion 8k Ninja
+0202	Model 56
+0203	RQ57 Dragon
+0204	LDT52-R
+0205	Nether 72
+0206	P50-XX
+0207	Ion 9k Samurai
+0208	RQ66 Saint
+0209	GH401WZ
+020A	H30k
+020B	PS-714
+020C	RQ77 Godslayer
+020D	Nether 108
+020E	T-199X
+020F	Karlten
+0210	RQ99 Omega
+0211	Gilgamesh
+0212	Olympus
+0213	Odyssey
+0214	Phillipan
+0215	Fujiyama
+0216	Beowulf
+0217	Tiamat
+0218	Brunhild
+0219	Siegfried
+021A	Fenrir
+021B	Infernal Gun
+021C	Etoile
+
+0259	Common Axe
+025A	Villagers Axe
+025B	Battle Axe
+025C	Bronze Axe
+025D	Iron Axe
+025E	Tomahawk
+025F	Warriors Axe
+0260	Mighty Axe
+0261	Steel Axe
+0262	Stamina Axe
+0263	Axe of Sorcery
+0264	Pixie Axe
+0265	Falcon Axe
+0266	Enchanted Axe
+0267	Silver Axe
+0268	Dwarven Axe
+0269	Bloody Axe
+026A	Adamant Axe
+026B	Demons Axe
+026C	Dream Axe
+026D	Headhunter
+026E	Heros Axe
+026F	Mistral Axe
+0270	Jupiters Axe
+0271	Golden Axe
+0272	Vigaros Axe
+0273	Axe of Death
+0274	Rune Axe
+0275	Terra Firma
+0276	Hellish Axe
+0277	Bahamuts Talon
+0278	Platinum Axe
+0279	Axe of Slaughter
+027A	Mercurius
+027B	Diabolic Axe
+027C	Empyrean Axe
+027D	Balmung
+027E	Infernal Axe
+027F	Durandal
+0280	Apocalypse
+
+02BD	Wooden Staff
+02BE	Light Staff
+02BF	Witchs Staff
+02C0	Mages Staff
+02C1	Smiting Rod
+02C2	Quality Staff
+02C3	Hibernal Staff
+02C4	Stamina Staff
+02C5	Swordstaff
+02C6	Pixie Staff
+02C7	Forgetful Staff
+02C8	Mortuus Staff
+02C9	Staff of Sorcery
+02CA	Silver Staff
+02CB	Elven Staff
+02CC	Blessed Staff
+02CD	Sages Staff
+02CE	Staff of Hope
+02CF	Enchanted Staff
+02D0	Mistral Staff
+02D1	Jupiters Staff
+02D2	Staff of Virtue
+02D3	Golden Staff
+02D4	Prophets Staff
+02D5	Rune Staff
+02D6	Rainbow Rod
+02D7	Bahamuts Wit
+02D8	Holy Staff
+02D9	Saints Staff
+02DA	Gambantein
+02DB	Diabolic Staff
+02DC	Tainted Staff
+02DD	Polanskys Staff
+02DE	Yggdrasil
+02DF	Mjollnir
+02E0	Dark Matter
+02E1	Kerykeion
+02E2	Infernal Staff
+02E3	Galactic Staff
+02E4	Omniscient Staff
+
+0321	Paw Glove
+0322	Scratch Claw
+0323	Crab Pincer
+0324	Shocking Grasp
+0325	Poison Needle
+0326	Bat Parasol
+0327	Cats Claw
+0328	Lizard Tail
+0329	Porcu-Spine
+032A	Electric Eel
+032B	Cobra Fang
+032C	Spiked Shell
+032D	Wolf Fang
+032E	Tentacles
+032F	Vampire Fang
+0330	Gorilla Foot
+0331	Lionheart
+0332	Bear Claw
+0333	Tiger Fang
+0334	Panda Claw
+0335	Nessie Attack
+0336	Medusa Eye
+0337	Brocken
+0338	Demons Hand
+0339	Fiendish Claw
+033A	Primal Force
+033B	Goblins Fury
+033C	Mystic Eye
+033D	Geo Saber
+033E	Destroy
+033F	Lightning Fang
+0340	Dragon Tooth
+0341	Enigma
+0342	Orichalch Claw
+0343	El Dorado
+0344	Dragon Heart
+0345	Belial Force
+0346	Amon Force
+0347	Lucifer Force
+0348	Nyanko Soul
+0349	Nemesis
+034A	Nemesis Mk-II
+
+03E9	Amulet
+03EA	Protector
+03EB	Bulletproof Vest
+03EC	Fancy Lid
+03ED	Leather Jacket
+03EE	Chain Mail
+03EF	Dimensional Cape
+03F0	Power Jacket
+03F1	Bushido Armor
+03F2	Magic Vest
+03F3	Muscle Armor
+03F4	Steel Armor
+03F5	Fur Coat
+03F6	Dandy Gown
+03F7	Stealth Cape
+03F8	Stinky Jacket
+03F9	Ghost Cape
+03FA	Prophets Robe
+03FB	Silver Tux
+03FC	Gritty Vest
+03FD	Mistral Armor
+03FE	Jupiters Armor
+03FF	Cactus Armor
+0400	Hero Cape
+0401	Gold Tux
+0402	Reapers Cloak
+0403	Black Armor
+0404	Nine Tail Fur
+0405	Platinum Tux
+0406	Dragon Jacket
+0407	Orichalch Shield
+0408	Bahamuts Scale
+0409	Evil Armor
+040A	Shield of Aegis
+040B	Celestial Armor
+040C	Infernal Cape
+040D	Infernal Shield
+040E	Infernal Armor
+040F	Nirvana
+0410	Super Robo Suit
+
+044D	Quasi-Power Belt
+044E	Power Belt
+044F	Endeavor Belt
+0450	Belt of Will
+0451	Mega-Power Belt
+0452	Monster Belt
+0453	Super Belt
+0454	Steel Belt
+0455	Aura Belt
+0456	Love Belt
+0457	Spirit Belt
+0458	Hero Belt
+0459	Soul Belt
+045A	Training Belt
+045B	Bravery Belt
+045C	Guts Belt
+045D	Shaolin Belt
+045E	Black Belt
+045F	Chakra Belt
+0460	Champion Belt
+
+04B1	Slippers
+04B2	Cross-Trainers
+04B3	Ninja Shoes
+04B4	Falcon Shoes
+04B5	Angels Sandals
+04B6	Accelerator
+04B7	Hyperdrive
+
+0515	Common Orb
+0516	Psyche Orb
+0517	Dark Orb
+0518	Blood Orb
+0519	Star Orb
+051A	Moon Orb
+051B	King Orb
+051C	Holy Orb
+051D	Chaos Orb
+051E	Universal Orb
+
+0579	Common Glasses
+057A	Magnifying Glass
+057B	Nerd Glasses
+057C	Plastic Nose
+057D	Opera Glasses
+057E	Nightvision
+057F	Crosshair Scope
+0580	Foresight
+0581	Destiny Lens
+0582	Providence
+
+05DD	Muscle Brawn
+05DE	Muscle Hustle
+05DF	Muscle Spirit
+05E0	Muscle Fight
+05E1	Muscle Ace
+05E2	Muscle Victory
+05E3	Muscle Dream
+05E4	Muscle World
+05E5	Muscle Star
+05E6	Galactic Muscle
+
+0709	Horse Wiener
+070A	Mahoganys Brain
+070B	Hercules Body
+070C	Gaos Guts
+070D	Crowdias Beauty
+070E	Myao's Cat Ears
+070F	Prinny Costume
+0710	Astro Suit
+0711	Felicitacion
+0712	Oracle
+
+076D	Imperial Seal
+076E	Dark Rosary
+076F	Devil Ring
+0770	Feather Token
+0771	Sofias Mirror
+0772	Pravda Necklace
+0773	Royal Ring
+0774	Testament
+0775	Exodus
+0776	Arcadia
+
+07D1	ABC Gum
+07D2	Mint Gum
+07D3	Candy
+07D4	Cotton Candy
+07D5	Taiyaki
+07D6	Chocolate
+07D7	Flan
+07D8	Eclair
+07D9	Shortcake
+07DA	Sundae
+
+07DB	Opened Drink
+07DC	Unopened Drink
+07DD	Garlic Water
+07DE	Yam Starch
+07DF	Barbeque Sauce
+07E0	Egg Yolk
+07E1	Protein Shake
+07E2	Bloody Mary
+07E3	Sake
+07E4	Mushroom Soup
+
+07EF	Dried Worm
+07F0	Caterpillar Egg
+07F1	Charred Newt
+07F2	Rooster Blood
+07F3	Snake Kidney
+07F4	Bat Soup
+07F5	Frog Sweat
+07F6	Immortals Pill
+07F7	Soma
+07F8	Elixir
+07F9	Veggie Burger
+
+0803	Faerie Dust
+
+0835	Stealing Hand
+0836	Plunder Hand
+0837	Cha-Ching Hand
+0838	Bandits Hand
+0839	Awesome Hand
+
+0899	Mr. Gency's Exit

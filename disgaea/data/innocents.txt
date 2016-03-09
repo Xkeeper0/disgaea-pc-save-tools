@@ -1,0 +1,39 @@
+01	Dietician
+02	Master
+03	Gladiator
+04	Sentry
+05	Teacher
+06	Coach
+07	Marksman
+08	Physician
+
+15	Alchemist
+16	Hypnotist
+17	Witch Doctor
+18	Amnesiac
+19	Gangster
+
+1A	Professional
+
+29	Pharmacist
+2A	Coffee Maker
+2B	Medicine Man
+2C	Psychologist
+2D	Social Worker
+
+2E	Firefighter
+2F	Aeronaut
+30	Cryophile
+
+3D	Broker
+3E	Statistician
+3F	Manager
+40	Armsmaster
+
+41	Artisan
+79	Troublemaker
+7A	Villain
+83	Item General
+84	Item King
+85	Item God
+86	Item God 2
