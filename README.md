@@ -7,10 +7,10 @@ Written in PHP. Yes, I know. It works.
 
 ## Usage
 
-`php test.php <path to save file>`
+`php extract.php <path to save file>`
 
 Example:
-`php test.php saves/SAVE000.DAT`
+`php extract.php saves/SAVE000.DAT`
 
 This will decrypt, decompress, and write the internal save data to `<file>.bin`.
 As of right now, there is no way to re-encode, but maybe in the future.
@@ -25,3 +25,8 @@ Most of the text in the save file is in Shift-JIS format, so have fun with that.
 Please follow the style used in this (even if it isn't very good). Comments and documentation appreciated.
 Maybe a text file describing how the format(s) work in the future.
 
+
+
+## Notes
+
+http://www.gamefaqs.com/ps2/589678-disgaea-hour-of-darkness/faqs/35073

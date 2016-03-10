@@ -18,12 +18,17 @@
 			);
 
 
+		public function __construct($data) {
+			$this->_data	= $data;
+		}
+
+
 		/**
 		 * Get a piece of information from the raw data
 		 * $what refers to the $_dataChunks property
 		 * $from can be used to select an alternate source
 		 */
-		public function getChunk($what, $from = false) {
+		public function getChunk($what, $from = null) {
 
 			// Determine source of data
 			if (!$from) {
@@ -52,6 +57,12 @@
 				// (not even "false" or "null" works, jfc)
 				// So emulate the "get all data" by just setting the length to the string. wow
 				$v['length']	= strlen($from);
+
+			} elseif ($v['length'] === "*") {
+				// "*" is a special value saying "get the size from the referenced class"
+				// Probably a better way to do this but, lazy
+				// since you can't use this in an actual class definition
+				$v['length']	= $v['type']::$size;
 			}
 
 
@@ -78,6 +89,42 @@
 
 
 		/**
+		 * Return all chunks in an array
+		 */
+		public function getAllChunks($from = null) {
+
+			$out	= array();
+
+			foreach ($this->_dataChunks as $chunk => $v) {
+
+				$dataP			= $this->getChunk($chunk, $from);
+
+				if ($dataP instanceof \Disgaea\DataStruct) {
+					// Recursively fetch further object chunks
+					$data		= $dataP->getAllChunks();
+
+				} elseif (is_array($dataP)) {
+					// Recursively recurse because (foams at mouth)
+					foreach ($dataP as &$dataPValue) {
+						if ($dataPValue instanceof \Disgaea\DataStruct) {
+							$dataPValue	= $dataPValue->getAllChunks();
+						}
+					}
+					$data	= $dataP;
+
+				} else {
+					$data		= $dataP;
+				}
+				$out[$chunk]	= $data;
+
+			}
+
+			return $out;
+
+		}
+
+
+		/**
 		 * Get the actual value for a chunk of data
 		 * $data is the raw string of bytes
 		 * $type is the defined type (or class) to use
@@ -89,9 +136,13 @@
 				// "int" type; turn into number and return
 				return $this->getLEValue($data);
 
-			} elseif ($type == "s") {
-				// "string" type; return unchanged bytes
+			} elseif ($type == "b") {
+				// "binary" type; return unchanged bytes
 				return $data;
+
+			} elseif ($type == "s") {
+				// "string" type; return SJIS-decoded text
+				return sjis(trim($data));
 
 			} elseif ($type == "h") {
 				// return hexadecimal representation of bytes (debug)
