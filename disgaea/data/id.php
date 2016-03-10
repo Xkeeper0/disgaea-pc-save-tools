@@ -13,8 +13,9 @@
 		protected function __construct() {}
 
 		public static function init() {
-			static::$_items		= static::_parse(static::_getFile("items.txt"));
-			static::$_innocents	= static::_parse(static::_getFile("innocents.txt"));
+			static::$_items		= static::_parse(static::_getFile("db/items.txt"));
+			static::$_innocents	= static::_parse(static::_getFile("db/innocents.txt"));
+			static::$_classes	= static::_parse(static::_getFile("db/classes.txt"));
 		}
 
 
@@ -36,6 +37,15 @@
 		}
 
 
+		public static function getClass($id) {
+			if (isset(static::$_classes[$id])) {
+				return static::$_classes[$id];
+			} else {
+				return sprintf("(Unknown %02x)", $id);
+			}
+		}
+
+
 		protected static function _parse($data) {
 
 			$out	= array();
@@ -43,8 +53,8 @@
 
 			foreach ($da as $line) {
 
-				if (!$line = trim($line)) {
-					// Skip empty lines
+				if (!$line = trim($line) || $line{0} == "#") {
+					// Skip empty and comment lines
 					continue;
 				}
 

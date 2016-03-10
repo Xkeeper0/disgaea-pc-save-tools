@@ -1,0 +1,443 @@
+# Sprite IDs, probably race IDs too?
+# Ordered by ID
+
+# Story characters
+0001	Laharl
+0002	Etna
+0003	Flonne
+0004	Gordon
+0005	Jennifer
+
+
+# Generic humanoids
+03F2	M-Brawler
+03F3	M-Pugilist
+03F4	M-Fighter
+03F5	M-BlackBelt
+03F6	M-WushuMaster
+03F7	M-EternalFist
+
+03FC	F-Brawler
+03FD	F-Pugilist
+03FE	F-Fighter
+03FF	F-BlackBelt
+0400	F-WushuMaster
+0401	F-EternalFist
+
+0406	M-Warrior
+0407	M-Battler
+0408	M-Centurion
+0409	M-Champion
+040A	M-Hero
+040B	M-Cosmic Hero
+
+0410	F-Warrior
+0411	F-Battler
+0412	F-Centurion
+0413	F-Champion
+0414	F-Hero
+0415	F-Cosmic Hero
+
+041A	Majin
+041B	Mega Majin
+041C	Giga Majin
+041D	Omega Majin
+041E	Tera Majin
+041F	Divine Majin
+
+0424	Ninja
+0425	Adept Ninja
+0426	Elite Ninja
+0427	Shadow Ninja
+0428	Master Ninja
+0429	Shinobi
+
+042E	Ronin
+042F	Samurai
+0430	Bushi
+0431	Kengo
+0432	Blademaster
+0433	Shogun
+
+0438	Knight
+0439	Vanquisher
+043A	Rune Knight
+043B	Chaos Knight
+043C	High Knight
+043D	Space Knight
+
+0442	Archer
+0443	Sniper
+0444	Striker
+0445	Valkyrie
+0446	Ace Archer
+0447	Freischutz
+
+044C	Red Skull
+044D	Green Skull
+044E	Blue Skull
+044F	Star Skull
+0450	Prism Skull
+0451	Galaxy Skull
+
+0456	Red Mage
+0457	Green Mage
+0458	Blue Mage
+0459	Star Mage
+045A	Prism Mage
+045B	Galaxy Mage
+
+0460	M-Cleric
+0461	M-Priest
+0462	M-Bishop
+0463	M-Sage
+0464	M-Prophet
+0465	M-Savior
+
+046A	F-Cleric
+046B	F-Priest
+046C	F-Bishop
+046D	F-Sage
+046E	F-Prophet
+046F	F-Savior
+
+0474	Scout
+0475	Surveyor
+0476	Ranger
+0477	Strider
+0478	Geo Master
+0479	Lord
+
+047E	Recruit
+047F	Officer
+0480	Cyborg
+0481	Psi-Soldier
+0482	SpacePolice
+0483	SpaceMarine
+
+0488	Angel
+0489	Angel Cadet
+048A	Angel Soldier
+048B	Crusader
+048C	Avenger
+048D	Paladin
+
+0492	Rogue
+0493	Thief
+0494	Bandit
+0495	Prowler
+0496	Raider
+0497	Space Pirate
+
+
+# Monster races
+
+07D0	Hobbit
+07D1	Puck
+07D2	Brownie
+07D3	Koropokkuru
+07D4	Lilliput
+07D5	Phooka
+
+07DA	Ghost
+07DB	Boggart
+07DC	Specter
+07DD	Wraith
+07DE	Fiend
+07DF	Phantom
+
+07E4	Golem
+07E5	Spriggan
+07E6	Ekim
+07E7	Djinn
+07E8	Ullikummi
+07E9	Gogmagog
+
+07EE	Man-Eater
+07EF	Oakrot
+07F0	Treant
+07F1	Zakkum
+07F2	Erl-King
+07F3	Yggdrasil
+
+07F8	Imp
+07F9	Gremlin
+07FA	Agathion
+07FB	Alp
+07FC	Incubus
+07FD	Daemon
+
+0802	KillerArmor
+0803	Dark Knight
+0804	Dullahan
+0805	Avenger
+0806	Demonic Suit
+0807	Executioner
+
+080C	Pumpkin
+080D	Decoy
+080E	Mandrake
+080F	Scarecrow
+0810	Jack
+0811	Halloween
+
+0816	Gargoyle
+0817	Guardian
+0818	Nebiros
+0819	Balrog
+081A	Seth
+081B	Pazuzu
+
+0820	Nightmare
+0821	Shade
+0822	Lich
+0823	Chernobog
+0824	Death
+0825	Thanatos
+
+082A	Serpent
+082B	Mizuchi
+082C	SeaDragon
+082D	Rahab
+082E	Leviathan
+082F	Midgardsorm
+
+0834	Cyclops
+0835	Sentinel
+0836	Nataku
+0837	Talos
+0838	Ravana
+0839	Argus
+
+083E	Dragon
+083F	Fafnir
+0840	Nidhogg
+0841	AhziDahaka
+0842	Tiamat
+0843	Bahamut
+
+0848	Zombie
+0849	Ghoul
+084A	Corpse
+084B	Ghast
+084C	Wight
+084D	ZombieKing
+
+0852	Brute
+0853	Death Boar
+0854	Minotaur
+0855	Humbaba
+0856	Archdemon
+0857	Behemoth
+
+
+# Baal. Maybe intended for more Baals?
+085C	Baal
+
+
+# Back to generic monsters
+
+0866	Manticore
+0867	Nue
+0868	Myrmecoleo
+0869	Chimera
+086A	TaoTieh
+086B	Sphinx
+
+0870	Empusa
+0871	Lilim
+0872	Succubus
+0873	Carmilla
+0874	Hecate
+0875	Lilith
+
+087A	Nekomata
+087B	Cait Sith
+087C	Werecat
+087D	Tailring
+087E	Elbacky
+087F	Bastet
+
+0884	Vampire
+0885	Strigoi
+0886	Neuntoter
+0887	Varcolaci
+0888	Nosferatu
+0889	Unholy King
+
+088E	Efreet
+088F	Shaitan
+0890	Marid
+0891	Flamberg
+0892	Surt
+0893	Kagutsuchi
+
+
+# Story character again
+0898	Thursday
+
+
+# Prinnies
+08A2	Pvt.Prinny
+08A3	Cpt.Prinny
+08A4	Gen.Prinny
+08A5	Prinny King
+08A6	Prinny God
+08A7	Big Sis Prinny
+08A8	Prinny Kurtis
+
+
+# Cannons (used in Earth ship fights or scout's skill)
+08FC	Dark Cannon
+08FD	Mega Cannon
+08FE	Astro Cannon
+
+
+# More story bosses/characters
+0960	Hoggmeiser
+096A	Sardia
+0974	Alt-Overlord
+097E	Uber-Prinny Baal
+09C4	Mid-Boss 1
+09CE	Mid-Boss 2
+09D8	Mid-Boss 3
+09E2	Mid-Boss 4
+09EC	Vyers
+09F6	Maderas
+0A0A	Vulcanus
+0A14	Lamington
+0A1E	Kurtis
+0A28	Don Joaquin
+0A32	Prism Red
+0A33	Prism Blue
+0A34	Prism Yellow
+0A35	Astro Carter
+0A36	Astro-One
+0A37	Astro-Two
+
+# Item World junk
+0A8C	Item-God
+0AF0	Geo-Symbol
+
+
+# Castle NPCs
+0B54	Ghost
+0B55	Ghoss
+0B56	Gargo
+0B57	Manty
+0B58	Goleck
+0B59	Dratti
+0B5A	Zommie
+0B5B	Gatekeeper
+0B5C	Extra
+0B5D	Item World
+0B5E	Weapon Shop
+0B5F	Battle Depot
+0B60	Hospital
+0B61	Pleinair
+0B62	Save Shop
+0B63	Music Shop
+0B64	Communicator
+0B65	Dimension Phone
+
+
+# Extra bosses/characters
+0BB8	Priere
+0BC2	Marjoly
+0BCC	Adell
+0BD6	Rozalin
+0BE0	Zetta
+0BEA	Antoire
+0BF4	Dark-Flonne
+
+
+# NPCs again. Etna mode?
+0BFE	Ghoss
+0C08	Gargo
+0C12	Manty
+0C1C	Goleck
+0C26	Dratti
+0C30	Zommie
+0C3A	Shark King
+0C44	True Overlord
+0C4E	Serra Winguar
+0C58	Vesuvius
+0C62	Dark Durian
+0C6C	Flonne
+0C76	Doll
+0C80	Tyrant Spirit
+0C81	Level Sphere
+0C82	Soul Pod
+
+
+# ??????
+
+1388	Weapon
+1395	Spirit
+1397	Thunder
+139A	Flower
+139D	Mark
+139E	Redact
+13A0	Blueact
+13A1	Yelloact
+139F	Entei
+
+
+# Cutscene sprites
+13EE	LhRage
+13EF	LhLaugh
+13F0	LhDamb
+13F1	LhShock
+13F2	LhAngry
+13F3	LhHand
+13F5	LhGaze
+13F6	LhNod
+13F7	LhAnger
+13F8	LhShy
+1451	EtAmaze
+1452	EtHuff
+1453	EtRage
+1454	EtChance
+1455	EtWonder
+1456	EtRot
+1458	EtWell
+1459	EtLazy
+145A	EtShy
+14B5	FlTilt
+14B6	FlEyesOnFire
+14B7	FlHaste
+14B8	FlShock
+14B9	FlUpHand
+14BB	FlBow
+14BC	FlHand
+150E	FlFAngel
+1519	GdLaugh
+151A	GdFervor
+151B	GdGo
+151C	GdShock
+151D	GdWell
+157D	JnKneel
+15D6	JnRevamp
+1645	PrShockF
+1646	PrShockB
+1647	PrLazyF
+1648	PrLazyB
+1649	PrHasteF
+164A	PrHasteB
+164B	PrShHand
+164C	PrSalute
+164D	PrDumb
+164E	PrThink
+164F	PrAkanbe
+1650	PrHorn
+1651	PrLeapF
+1652	PrLeapB
+1653	PrUpHand
+1654	PrTrip
+1655	PrDoll
+1656	MPrDoll
+16A9	BsHan
+16AA	BsSwathe
+1771	Laminton
+19C9	Carter
+1A2D	Laharl's Mother
