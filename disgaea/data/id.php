@@ -53,7 +53,7 @@
 
 			foreach ($da as $line) {
 
-				if (!$line = trim($line) || $line{0} == "#") {
+				if (!($line = trim($line)) || $line{0} == "#") {
 					// Skip empty and comment lines
 					continue;
 				}

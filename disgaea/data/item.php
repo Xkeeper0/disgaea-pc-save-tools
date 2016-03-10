@@ -7,25 +7,7 @@
 		protected	$_data			= "";
 		protected	$_dataChunks	= array(
 			#'name'			=> array( 'start' => 0x0000, 'length' => 0x0020,	'type' => "s"),
-			'innocent01'	=> array( 'start' => 0x0000, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent02'	=> array( 'start' => 0x0004, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent03'	=> array( 'start' => 0x0008, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent04'	=> array( 'start' => 0x000c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			/*
-			'innocent05'	=> array( 'start' => 0x0010, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent06'	=> array( 'start' => 0x0014, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent07'	=> array( 'start' => 0x0018, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent08'	=> array( 'start' => 0x001c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent09'	=> array( 'start' => 0x0020, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent10'	=> array( 'start' => 0x0024, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent11'	=> array( 'start' => 0x0028, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent12'	=> array( 'start' => 0x002c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent13'	=> array( 'start' => 0x0030, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent14'	=> array( 'start' => 0x0034, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent15'	=> array( 'start' => 0x0038, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			'innocent16'	=> array( 'start' => 0x003c, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent'),
-			*/
-			// todo, find some way to make a repetitve entry
+			'innocents'		=> array( 'start' => 0x0000, 'length' => 0x0004, 'type' => '\Disgaea\Data\Innocent', 'count' => 16),
 
 			'unknown01'		=> array( 'start' => 0x0040, 'length' => 0x0008, 'type' => "h"),
 
@@ -69,7 +51,14 @@
 				if ($chunk == "id") {
 					$data	= sprintf("%04X [%s]", $data, \Disgaea\Data\ID::getItem($data));
 				}
-				printf("%-20s %s\n", $chunk, $data);
+				$datastring	= $data;
+				if (is_array($data)) {
+					$datastring	= "\n";
+					foreach ($data as $id => $d) {
+						$datastring	.= "    $id: $d\n";
+					}
+				}
+				printf("%-20s %s\n", $chunk, $datastring);
 			}
 		}
 

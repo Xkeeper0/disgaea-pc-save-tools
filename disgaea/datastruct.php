@@ -18,46 +18,90 @@
 			);
 
 
+		/**
+		 * Get a piece of information from the raw data
+		 * $what refers to the $_dataChunks property
+		 * $from can be used to select an alternate source
+		 */
 		public function getChunk($what, $from = false) {
+
+			// Determine source of data
 			if (!$from) {
 				$from	= $this->_data;
 			}
+
+			// Determine what data we are going to get
 			if (!isset($this->_dataChunks[$what])) {
 				var_dump($this->_dataChunks);
 				throw new \Exception("Unknown data request: $what");
 			}
 
+			// Temporary variable for convinience
 			$v	= $this->_dataChunks[$what];
 
+			// Determine length of requested data
+			// If no length, assume "all remaining in file"
 			if (!$v['length']) {
-				// "until end of file"
+
+				if (isset($v['count']) && $v['count'] > 1) {
+					// Check for absurdity
+					throw new \Exception("Trying to arrayize the remainder of the data is a bad idea, don't do that.");
+				}
+
 				// There is no way to substr() "to the end of string" if you specify a third argument
 				// (not even "false" or "null" works, jfc)
 				// So emulate the "get all data" by just setting the length to the string. wow
 				$v['length']	= strlen($from);
 			}
 
-			$d	= substr($from, $v['start'], $v['length']);
 
+			// Handle getting an array of chunks
+			// e.g., someone's equipment, which is 4 "item" chunks in sequence
+			if (isset($v['count']) && $v['count'] > 1) {
+				// Return an array of values based on count tag
+				$out	= array();
+				for ($i = 0; $i < $v['count']; $i++) {
+					$d	= substr($from, $v['start'] + $v['length'] * $i, $v['length']);
+					$out[$i]	= $this->_getChunkValue($d, $v['type']);
+				}
+
+				return $out;
+
+			} else {
+				// Single element, just get the data for one
+				$d	= substr($from, $v['start'], $v['length']);
+				return $this->_getChunkValue($d, $v['type']);
+
+			}
+		}
+
+
+
+		/**
+		 * Get the actual value for a chunk of data
+		 * $data is the raw string of bytes
+		 * $type is the defined type (or class) to use
+		 */
+		protected function _getChunkValue($data, $type) {
 
 			// Return data in a meaningful way
-			if ($v['type'] == "i" || !$v['type']) {
+			if ($type == "i" || !$type) {
 				// "int" type; turn into number and return
-				return $this->getLEValue($d);
+				return $this->getLEValue($data);
 
-			} elseif ($v['type'] == "s") {
+			} elseif ($type == "s") {
 				// "string" type; return unchanged bytes
-				return $d;
+				return $data;
 
-			} elseif ($v['type'] == "h") {
+			} elseif ($type == "h") {
 				// return hexadecimal representation of bytes (debug)
 				// complicated shit to turn it into XX XX XX XX... format
 				// Probably a simpler way but, 1:50 AM, who cares
-				return implode(" ", str_split(bin2hex($d), 2));
+				return implode(" ", str_split(bin2hex($data), 2));
 
 			} else {
 				// "class" type: return a new class constructed with the byte data
-				return new $v['type']($d);
+				return new $type($data);
 			}
 
 		}
