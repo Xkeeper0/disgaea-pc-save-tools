@@ -20,6 +20,13 @@
 
 		public function __construct($data) {
 			$this->_data	= $data;
+
+
+			if (method_exists($this, '_init')) {
+				// Silly workaround to prevent having to build new constructors
+				// that call parent::__construct() all the time
+				$this->_init();
+			}
 		}
 
 
