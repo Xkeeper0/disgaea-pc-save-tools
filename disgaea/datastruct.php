@@ -132,27 +132,35 @@
 		protected function _getChunkValue($data, $type) {
 
 			// Return data in a meaningful way
-			if ($type == "i" || !$type) {
-				// "int" type; turn into number and return
-				return $this->getLEValue($data);
+			switch ($type) {
 
-			} elseif ($type == "b") {
-				// "binary" type; return unchanged bytes
-				return $data;
+				case "i":
+					// "int" type; turn into number and return
+					return $this->getLEValue($data);
+					break;
 
-			} elseif ($type == "s") {
-				// "string" type; return SJIS-decoded text
-				return sjis(trim($data));
+				case "b":
+					// "binary" type; return unchanged bytes
+					return $data;
+					break;
 
-			} elseif ($type == "h") {
-				// return hexadecimal representation of bytes (debug)
-				// complicated shit to turn it into XX XX XX XX... format
-				// Probably a simpler way but, 1:50 AM, who cares
-				return implode(" ", str_split(bin2hex($data), 2));
+				case "s":
+					// "string" type; return SJIS-decoded text
+					return sjis(trim($data));
+					break;
 
-			} else {
-				// "class" type: return a new class constructed with the byte data
-				return new $type($data);
+				case "h":
+					// return hexadecimal representation of bytes (debug)
+					return implode(" ", str_split(bin2hex($data), 2));
+					break;
+
+				default:
+					if (class_exists($type)) {
+						return new $type($data);
+					} else {
+						throw new \Exception("Unknown chunk type '$type'");
+					}
+					break;
 			}
 
 		}
