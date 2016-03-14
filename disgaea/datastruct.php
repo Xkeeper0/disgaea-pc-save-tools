@@ -185,4 +185,54 @@
 
 		}
 
-}
+
+
+		public function getMap() {
+
+			$map	= array();
+			$l		= strlen($this->_data);
+			for ($i = 0; $i < $l; $i++) {
+				$map[$i]	= array('v' => sprintf("%02x", ord($this->_data{$i})), 'type' => null, 'n' => 0);
+			}
+
+			$types	= array();
+
+			foreach ($this->_dataChunks as $type => $chunk) {
+
+
+				$start	= $chunk['start'];
+
+				// Get length of this chunk of data...
+				if ($chunk['length'] !== "*") {
+					$length	= $chunk['length'];
+				} else {
+					$length	= $chunk['type']::$size;
+				}
+
+				// If it's an array, multiply by # of elements
+				if (isset($chunk['count'])) {
+					$count	= $chunk['count'];
+				} else {
+					$count	= 1;
+				}
+
+				$types[$type]	= $count;
+
+				for ($i = 0; $i < ($length * $count); $i++) {
+					$o	= $start + $i;
+					if ($map[$o]['type'] !== null) {
+						throw new \Exception("Data overlap! Offset ". sprintf("%04x", $o) ." is marked as both ". $map[$o]['type'] ." and ". $type ."!");
+					}
+
+					$map[$o]['type']	= $type;
+					$map[$o]['n']		= floor($i / $chunk['length']);
+				}
+
+			}
+
+			return array("map" => $map, "types" => $types);
+
+		}
+
+
+	}
