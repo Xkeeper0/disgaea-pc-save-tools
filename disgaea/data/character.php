@@ -56,17 +56,18 @@
 			
 			'basestats'			=> array( 'start' => 0x0658, 'length' => 0x0008, 'type' => '\Disgaea\Data\Stats\CharacterBaseStats'),
 			
-			'unknown09'			=> array( 'start' => 0x0660, 'length' => 0x0024, 'type' => "h"),
+			'level'				=> array( 'start' => 0x0660, 'length' => 0x0002, 'type' => "i"),
+			'unknown09'			=> array( 'start' => 0x0662, 'length' => 0x0056, 'type' => "h"),
 
 			);
 
 
 
 		public function __toString() {
-			return sprintf("%-16s / %-16s: Lv. %4d, HP %d/%d, SP %d/%d", 
+			return sprintf("%-16s / %-16s: Lv. %4d, HP %7d/%7d, SP %7d/%7d", 
 				$this->getChunk("name"),
 				$this->getChunk("title"),
-				"0",
+				$this->getChunk("level"),
 				$this->getChunk("currenthp"),
 				$this->getChunk("stats")->getChunk("hp"),
 				$this->getChunk("currentsp"),
