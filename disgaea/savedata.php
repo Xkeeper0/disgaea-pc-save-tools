@@ -4,17 +4,10 @@
 
 	class SaveData extends DataStruct	{
 
-		public	$data			= "";
-		public	$dataChunks		= array(
+		protected	$_data			= "";
+		protected	$_dataChunks	= array(
+			'characters'		=> array( 'start' => 0x0BB8, 'length' => 0x06B8,	'type' => '\Disgaea\Data\Character',	'count' => 0x7F),
 			);
-
-
-		public function __construct($data) {
-			$this->data	= $data;
-
-
-		}
-
 
 
 	}
