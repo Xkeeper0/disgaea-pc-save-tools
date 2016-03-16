@@ -182,4 +182,45 @@
 
 		}
 
+
+
+		/**
+		 * Hastily-written nop compression
+		 * Rewrites data using nothing but "copy next values" bytes
+		 * Does not actually compress anything
+		 * Inflates file size by about 0.79%
+		 */
+		public static function compress($s, $size = false) {
+
+			$len		= strlen($s);
+			$chunksize	= ($size ? $size : 0x7F);
+
+			if ($chunksize <= 0 || $chunksize >= 0x80) {
+				throw new \Exception("'Compression' chunk size must be between 0x01-0x7F");
+			}
+
+			$out	= "";
+
+			for ($p = 0; $p < $len; $p += $chunksize) {
+
+				$sz		= min($chunksize, $len - $p);
+				$out	.= chr($sz);
+				$out	.= substr($s, $p, $chunksize);
+
+
+			}
+
+			return $out;
+
+		}
+
+
+
+
+
+
+
+
+
+
 	}
