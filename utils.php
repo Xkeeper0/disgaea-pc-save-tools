@@ -20,6 +20,11 @@
 	}
 
 
+	function unimplemented($m) {
+		throw new \Exception("Unimplemented: $m");
+	}
+
+
 
 	function generateHTMLMap($map) {
 
