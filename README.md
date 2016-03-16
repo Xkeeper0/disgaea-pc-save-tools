@@ -2,7 +2,7 @@
 
 Tools for decrypting and decompressing (soon: compressing?) Disgaea PC save files.
 
-Written in PHP. Yes, I know. It works. Currently uses `php 5.6.11`, probably will work fine with anything modern (`>=5.5`) but who knows
+Written in PHP. Yes, I know. It works. Currently uses `php 5.6.11`, probably will work fine with anything modern (`>=5.5`) but who knows. Also requires [php5-intl](http://php.net/manual/en/intl.installation.php) (`apt-get install php5-intl`) if you want to normalize strings. (If you can't get `intl` or don't mind fullwidth, edit `utils.php` `sjis()` to remove that bit. todo: check if intl exists first.)
 
 
 ## Usage
