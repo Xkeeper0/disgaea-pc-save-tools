@@ -31,6 +31,16 @@
 
 
 		/**
+		 * Get data function.
+		 * Returns $this->_data.
+		 * Very useful, I assure you
+		 */
+		public function getData() {
+			return $this->_data;
+		}
+
+
+		/**
 		 * Get a piece of information from the raw data
 		 * $what refers to the $_dataChunks property
 		 * $from can be used to select an alternate source
@@ -143,7 +153,7 @@
 
 				case "i":
 					// "int" type; turn into number and return
-					return $this->getLEValue($data);
+					return self::getLEValue($data);
 					break;
 
 				case "b":
@@ -174,7 +184,7 @@
 
 
 
-		public function getLEValue($s) {
+		public static function getLEValue($s) {
 			$t	= str_split($s);
 			$o	= 0;
 			foreach ($t as $i => $v) {
@@ -182,6 +192,109 @@
 			}
 
 			return $o;
+
+		}
+
+
+		public static function makeLEValue($v, $l, $signed = false) {
+
+			if ($v >= (pow(256, $l))) {
+				throw new \Exception("Value $v too large to store in $l bytes");
+			}
+
+
+			$o	= "";
+
+			for ($i = 0; $i < $l; $i++) {
+				$o	.= chr($v & 0xFF);
+				$v	= $v >> 8;
+			}
+
+			return $o;
+
+		}
+
+
+
+		public function setChunk($what, $newValue) {
+
+			// Determine what data we are going to get
+			if (!isset($this->_dataChunks[$what])) {
+				throw new \Exception("Unknown set data request: $what");
+			}
+
+			// Temporary variable for convinience
+			$v	= $this->_dataChunks[$what];
+
+			if (isset($v['count']) && $v['count'] > 1) {
+				unimplemented("Cannot currently write arrays of data (requested to write $what)");
+			}
+
+
+			switch ($v['type']) {
+
+				case "i":
+					// "int" type; convert into little-endian binary value
+					$newRaw		= self::makeLEValue($newValue, $v['length']);
+					break;
+
+
+				case "b":
+					// "binary" type; insert new value in
+					// Probably make sure length = new length
+					if ($v['length'] && strlen($newValue) > $v['length']) {
+						throw new \Exception("New data length (". strlen($newValue) .") longer than original data length (". $v['length'] .")");
+					
+					} elseif ($v['length'] && strlen($newValue) < $v['length']) {
+						// Pad to make length equal to original data length
+						$newValue	= str_pad($newValue, $v['length'], "\x00");
+					}
+					
+					$newRaw		= $newValue;
+					break;
+
+
+				case "s":
+					// "string" type; reconvert into fullwidth SJIS-encoded text(?)
+					unimplemented("Cannot re-encode SJIS text yet");
+					break;
+
+
+				case "h":
+					// return hexadecimal representation of bytes (debug)
+					unimplemented("Cannot currently recombobulate stringified hexadecimal");
+					return implode(" ", str_split(bin2hex($data), 2));
+					break;
+
+				default:
+					if ($newValue instanceof $v['type']) {
+						// Get raw data from internal struct
+						$newRaw	= $newValue->getData();
+
+					} else {
+						throw new \Exception("Unknown newValue given");
+					}
+					break;
+			}
+
+			// ACTUAL WRITING TIME
+			if ($v['length'] !== false) {
+				if (strlen($newRaw) != $v['length']) {
+					throw new \Exception("New data length (". strlen($newRaw) .") longer than original data length (". $v['length'] ."). This should probably never happen.");
+				}
+
+				// Replace all data in this range with new data
+				$this->_data	= substr_replace($this->_data, $newRaw, $v['start'], $v['length']);
+
+
+			} elseif ($v['length'] === false) {
+
+				// Replace all data after start with new data
+				$this->_data	= substr_replace($this->_data, $newRaw, $v['start']);
+
+			} else {
+				throw new \Exception("uhhh... this should never get here");
+			}
 
 		}
 
