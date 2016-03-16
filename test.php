@@ -2,6 +2,38 @@
 
 	require_once("utils.php");
 
+
+	$test	= new \Disgaea\TestStruct("");
+	var_dump($test->getAllChunks());
+	print "\n\nSetting new values...\n";
+
+	$test->setChunk("int", 0x1234);
+	$test->setChunk("raw", "TEST");
+	$test->setChunk("int2", 0xEFBEADDE);
+	$test->setChunk("raw2", "oh");
+	$test->setChunk("final", "this is the end of the data -->");
+
+	print "Dumping new chunks:\n";
+	var_dump($test->getAllChunks());
+
+	print "Dumping new data:\n";
+	var_dump(bin2hex($test->getData()));
+
+	print "\n\n";
+	die();
+
+
+	$test	= \Disgaea\DataStruct::makeLEValue(0x12345678, 4);
+
+	var_dump(bin2hex($test));
+
+
+
+
+
+	die("\n\n");
+
+
 	$decompressedData	= file_get_contents("saves/SAVE003.DAT.bin");
 
 	$saveObject			= new \Disgaea\SaveData($decompressedData);
