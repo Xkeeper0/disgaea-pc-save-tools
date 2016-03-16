@@ -20,6 +20,7 @@
 
 	try {
 		$decompressedData	= $compressedData->decompress();
+		file_put_contents("$argv[1].dec", $save->getData());
 		file_put_contents("$argv[1].bin", $decompressedData);
 		print "Wrote decompressed save file to $argv[1].bin\n";
 
