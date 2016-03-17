@@ -5,6 +5,9 @@
 	class DataStruct {
 
 		protected	$_data			= "";
+		protected	$_origin		= null;
+		protected	$_index			= null;
+
 		protected	$_dataChunks	= array(
 			/*
 			Name of chunk              Starting offset    Length                 Data type
@@ -18,8 +21,11 @@
 			);
 
 
-		public function __construct($data) {
+		public function __construct($data, $origin = null, $index = null) {
 			$this->_data	= $data;
+			$this->_origin	= $origin;
+			$this->_index	= $index;
+
 
 
 			if (method_exists($this, '_init')) {
@@ -27,6 +33,16 @@
 				// that call parent::__construct() all the time
 				$this->_init();
 			}
+		}
+
+
+		public function setOrigin($obj, $chunk, $index = null) {
+			$this->_origin	= array(
+				'obj'	=> $obj,
+				'chunk'	=> $chunk,
+				);
+			$this->_index	= $index;
+
 		}
 
 
@@ -91,6 +107,9 @@
 				for ($i = 0; $i < $v['count']; $i++) {
 					$d	= substr($from, $v['start'] + $v['length'] * $i, $v['length']);
 					$out[$i]	= $this->_getChunkValue($d, $v['type']);
+					if ($out[$i] instanceof DataStruct) {
+						$out[$i]->setOrigin($this, $what, $i);
+					}
 				}
 
 				return $out;
@@ -98,7 +117,11 @@
 			} else {
 				// Single element, just get the data for one
 				$d	= substr($from, $v['start'], $v['length']);
-				return $this->_getChunkValue($d, $v['type']);
+				$out	= $this->_getChunkValue($d, $v['type']);
+				if ($out instanceof DataStruct) {
+					$out->setOrigin($this, $what);
+				}
+				return $out;
 
 			}
 		}
@@ -216,7 +239,7 @@
 
 
 
-		public function setChunk($what, $newValue) {
+		public function setChunk($what, $newValue, $index = null) {
 
 			// Determine what data we are going to get
 			if (!isset($this->_dataChunks[$what])) {
@@ -227,8 +250,13 @@
 			$v	= $this->_dataChunks[$what];
 
 			if (isset($v['count']) && $v['count'] > 1) {
-				unimplemented("Cannot currently write arrays of data (requested to write $what)");
+				if ($index === null) {
+					unimplemented("Cannot currently write arrays of data (requested to write $what)");
+				} elseif ($index >= $v['count'] || $index < 0) {
+					throw new \Exception("Index ($index) out of bounds for this chunk (max ". $v['count'] .")");
+				}
 			}
+
 
 
 			switch ($v['type']) {
@@ -277,23 +305,36 @@
 					break;
 			}
 
+
 			// ACTUAL WRITING TIME
+			$startOffset	= $v['start'];
+			if ($index) {
+				$startOffset	+= ($v['length'] * $index);
+			}
+
 			if ($v['length'] !== false) {
 				if (strlen($newRaw) != $v['length']) {
 					throw new \Exception("New data length (". strlen($newRaw) .") longer than original data length (". $v['length'] ."). This should probably never happen.");
 				}
 
 				// Replace all data in this range with new data
-				$this->_data	= substr_replace($this->_data, $newRaw, $v['start'], $v['length']);
+				$this->_data	= substr_replace($this->_data, $newRaw, $startOffset, $v['length']);
 
 
 			} elseif ($v['length'] === false) {
 
 				// Replace all data after start with new data
-				$this->_data	= substr_replace($this->_data, $newRaw, $v['start']);
+				$this->_data	= substr_replace($this->_data, $newRaw, $startOffset);
 
 			} else {
 				throw new \Exception("uhhh... this should never get here");
+			}
+
+
+			// Update the parent object with the new data
+			if ($this->_origin) {
+				print "Updating parent object [". get_class($this->_origin['obj']) ."]...\n";
+				$this->_origin['obj']->setChunk($this->_origin['chunk'], $this, $this->_index);
 			}
 
 		}

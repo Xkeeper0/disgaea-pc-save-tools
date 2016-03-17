@@ -2,7 +2,7 @@
 
 	require_once("utils.php");
 
-
+/*
 	$test	= new \Disgaea\TestStruct("");
 	var_dump($test->getAllChunks());
 	print "\n\nSetting new values...\n";
@@ -33,16 +33,35 @@
 
 	die("\n\n");
 
+*/
 
-	$decompressedData	= file_get_contents("saves/SAVE003.DAT.bin");
+	$save		= new \Disgaea\SaveFile("saves/SAVE000.DAT");
+	$saveData	= $save->getSaveObject();
 
-	$saveObject			= new \Disgaea\SaveData($decompressedData);
+	$characters			= $saveData->getChunk('characters');
+	$items				= $characters[0]->getChunk("equipment");
+	$items[0]->dump();
+	$stats		= $items[0]->getChunk("stats");
+	$stats->setChunk("hp", 42069);
 
-	$characters			= $saveObject->getChunk('characters');
+	print "Updated HP stat, let's see what the data looks like now\n";
 
+	$characters			= $saveData->getChunk('characters');
+	$items				= $characters[0]->getChunk("equipment");
+	$items[0]->dump();
+
+	print "Updating save file...\n";
+	$save->updateSaveFile($saveData);
+	print "Writing save file...\n";
+	$save->writeSaveFile("saves/TEST.DAT");
+
+	print "Done\n";
+
+	/*
 	foreach ($characters as $id => $character) {
 		printf("%3d: %s\n", $id, $character);
 	}
+	*/
 
 	die("\n\n");
 	/*

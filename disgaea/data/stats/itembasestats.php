@@ -2,7 +2,7 @@
 
 	namespace Disgaea\Data\Stats;
 
-	class ItemBaseStats extends \Disgaea\DataStruct {
+	class ItemBaseStats extends \Disgaea\Data\Stats {
 
 		public static $size			= 0x10;
 		protected	$_data			= "";

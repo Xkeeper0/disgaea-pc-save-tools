@@ -13,21 +13,18 @@
 
 
 	$save		= new \Disgaea\SaveFile($argv[1]);
-	$saveData	= new \Disgaea\SaveData($save->getRawSaveData());
+	$saveData	= $save->getSaveObject();
 
-	$compressedData	= $save->getSaveObject();
-	$compressedData->setLogLevel(1);
 
 	try {
-		$decompressedData	= $compressedData->decompress();
+		$decompressedData	= $saveData->getData();
 		file_put_contents("$argv[1].dec", $save->getData());
 		file_put_contents("$argv[1].bin", $decompressedData);
 		print "Wrote decompressed save file to $argv[1].bin\n";
 
 	} catch (Exception $e) {
 		print "Error decompressing save file: ". $e->getMessage() ."\n";
-		file_put_contents("$argv[1].bin", $compressedData->getDecompressedData());
-		print "Wrote probably-not-correct attempt at decompressing file to $argv[1].bin\n";
+
 	}
 
 

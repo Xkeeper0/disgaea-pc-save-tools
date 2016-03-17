@@ -17,4 +17,15 @@
 			'res'			=> array( 'start' => 0x001c, 'length' => 0x0004, 'type' => "i"),
 			);
 
+
+		public function __toString() {
+			
+			$out	= "";
+			foreach ($this->_dataChunks as $chunk => $d) {
+				$out	.= ($out ? " - " : "") . strtoupper($chunk) .": ". $this->getChunk($chunk);
+			}
+
+			return $out;
+		}
+
 	}

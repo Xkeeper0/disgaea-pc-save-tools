@@ -21,10 +21,13 @@
 			'compressedData'	=> array( 'start' => 0x0044, 'length' => false,		'type' => "b" ),
 			);
 
+		protected	$_filename		= "";
 
 		public function __construct($f) {
 			if (file_exists($f)) {
 				$encryptedData	= file_get_contents($f);
+				$this->_filename	= $f;
+
 			} else {
 				throw new \Exception("File $f doesn't exist");
 			}
@@ -68,7 +71,8 @@
 				throw new Exception("Unexpected magic value: ". $magic);
 			}
 
-			return new CompressionHandler($this->getChunk("compressedData"), $this->getChunk("decompressedSize"));
+			$compressedData	= new CompressionHandler($this->getChunk("compressedData"), $this->getChunk("decompressedSize"));
+			return new \Disgaea\SaveData($compressedData->decompress());
 
 		}
 
@@ -78,5 +82,30 @@
 		}
 
 
+
+		public function updateSaveFile(\Disgaea\SaveData $saveData) {
+
+			$newDecompressed	= $saveData->getData();
+			$newCompressedData	= \Disgaea\CompressionHandler::compress($newDecompressed);
+			$compressedSize		= (strlen($newCompressedData) + 18);
+
+			$this->setChunk("compressedData",	$newCompressedData);
+			$this->setChunk("compressedSize",	$compressedSize);
+			$this->setChunk("decompressedSize",	strlen($newDecompressed)       );
+			$this->setChunk("length",			strlen($newCompressedData) + 19);
+			$this->setChunk("lengthdiv4",		ceil($this->getChunk("length") / 4));
+
+			dumpSaveStuff($this);
+
+
+			return true;
+		}
+
+
+		public function writeSaveFile($filename = null) {
+			$filename	= $filename ? $filename : substr_replace($this->_filename, ".new", -4, 0);
+			file_put_contents($filename, $this->getData());
+			return true;
+		}
 	}
 
