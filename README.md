@@ -18,11 +18,7 @@ This will decrypt, decompress, and write the internal save data to `<file>.bin`.
 It will also store the plain decrypted version to `<file>.dec`, which is usable directly as a save file if you want. (It changes the XOR key to `00 00 00 00`.) The contents are still compressed, but if you know what you're doing you can still break.
 
 
-Recompressing is a work in progress (see `inject.php`) but crashes the game for Reasons. We're working on it.
-
-
-A lot of junk is in `test.php` and other scattered files. Some of the code is commented. A lot isn't. Work in progress.
-
+Editing the save file is doable. See `inject.php` if you want to edit the raw file, or `test.php` (currently) to see how editing objects works. It's complicated and brand new, so hopefully more documentation hapens soon.
 
 
 Some save files are included in `saves/` for ease of making sure things work.
@@ -42,3 +38,4 @@ Describes save file format for PS2 version; it's different here (some fields are
 
 Phantom Kingdom Portable translation thread, mostly useful because of `YKCMP_V1` format documentation in third post: https://gbatemp.net/threads/phantom-kingdom-portable-english-translation.365313/
 
+Some other things might be in assorted files.
