@@ -17,7 +17,7 @@
 
 	class Character extends \Disgaea\DataStruct {
 
-		public static $size			= 0x684;
+		public static $size			= 0x6b8;
 		protected	$_data			= "";
 		protected	$_dataChunks	= array(
 
