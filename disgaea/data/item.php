@@ -31,9 +31,9 @@
 			'mv'			=> array( 'start' => 0x0082, 'length' => 0x0001, 'type' => "i"),
 			'jm'			=> array( 'start' => 0x0083, 'length' => 0x0001, 'type' => "i"),
 			'rank'			=> array( 'start' => 0x0084, 'length' => 0x0001, 'type' => "i"),
+			'range'			=> array( 'start' => 0x0085, 'length' => 0x0001, 'type' => "i"),
 
-
-			'unknown04'		=> array( 'start' => 0x007F, 'length' => 0x0011, 'type' => "h"),
+			'unknown'		=> array( 'start' => 0x0086, 'length' => 0x000a, 'type' => "h"),
 
 			);
 
