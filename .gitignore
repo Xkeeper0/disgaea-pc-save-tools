@@ -2,6 +2,10 @@
 *.dat
 *.BIN
 *.bin
+*.new*
+*.dec*
+*.NEW*
+*.DEC*
 
 # Testing folder with a few saves
 # saves/
