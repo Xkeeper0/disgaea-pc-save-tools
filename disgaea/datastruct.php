@@ -257,8 +257,6 @@
 				}
 			}
 
-
-
 			switch ($v['type']) {
 
 				case "i":
@@ -333,7 +331,7 @@
 
 			// Update the parent object with the new data
 			if ($this->_origin) {
-				print "Updating parent object [". get_class($this->_origin['obj']) ."]...\n";
+				print "Updating parent object [". get_class($this->_origin['obj']) ."] (". $this->_origin['chunk'] ."[". ($this->_index !== null ? $this->_index : "--") ."])...\n";
 				$this->_origin['obj']->setChunk($this->_origin['chunk'], $this, $this->_index);
 			}
 
