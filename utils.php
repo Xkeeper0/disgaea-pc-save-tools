@@ -26,6 +26,57 @@
 
 
 
+
+	function dumpSaveStuff($s, $s2 = null) {
+
+		$read		= array(
+			'unknown0'			=> "h",
+			'xorkey'			=> "h",
+			'magic'				=> "h",
+			'unknown1'			=> "i",
+			'unknown2'			=> "i",
+			'lengthdiv4'		=> "i",
+			'length'			=> "i",
+			'unknown4'			=> "i",
+			'decompressedSize'	=> "i",
+			'data'				=> "l",
+			'compressedSize'	=> "i",
+			'compressedData'	=> "l",
+			);
+
+		foreach ($read as $chunk => $type) {
+
+			$d	= $s->getChunk($chunk);
+			if ($s2) $d2	= $s2->getChunk($chunk);
+
+			printf("%-20s: ", $chunk);
+
+			if ($type == "h") {
+				printf("%-25s | %-25s ", bin2hex($d), ($s2 ? bin2hex($d2) : ""));
+
+			} elseif ($type == "l") {
+				printf("%8d (%8x) bytes | ", strlen($d),  strlen($d));
+				if ($s2) printf("%8d (%8x) bytes",       strlen($d2), strlen($d2));
+
+			} else {
+				printf("%8d (%8x)       | ", $d, $d);
+				if ($s2) printf("%8d (%8x) ", $d2, $d2);
+
+			}
+
+			print "\n";
+		}
+
+	}
+
+
+
+
+
+
+
+
+
 	function generateHTMLMap($map) {
 
 ?>

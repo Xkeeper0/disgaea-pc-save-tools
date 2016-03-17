@@ -10,62 +10,40 @@
 
 	print "Loading save data\n";
 	$save		= new \Disgaea\SaveFile($argv[1]);
+	$save2		= new \Disgaea\SaveFile("saves/SAVE002.DAT");
+	$oldSave	= clone $save;
 
-	dumpSaveStuff($save);
+	//dumpSaveStuff($save);
 
 	print "Loading new data\n";
 	$newDecompressed	= file_get_contents($argv[2]);
+
 	print "'Compressing' save data\n";
-	$newCompressedData	= \Disgaea\CompressionHandler::compress($newDecompressed, 0x3F);
+	$newCompressedData	= \Disgaea\CompressionHandler::compress($newDecompressed);
+
+
+	// override all that bullshit
+	//$newDecompressed	= file_get_contents("saves/SAVE002.DAT.bin");
+	//$newCompressedData	= $save2->getChunk("compressedData");
 
 	print "Updating original save data\n";
-	$save->setChunk("compressedData", $newCompressedData);
-	$save->setChunk("compressedSize", strlen($newCompressedData) + 19);
-	$save->setChunk("decompressedSize", strlen($newDecompressed));
-	$save->setChunk("length", strlen($newCompressedData) + 19);
 
-	$filename	= substr_replace($argv[1], ".new", -4, 0);
+	$compressedSize			= (strlen($newCompressedData) + 18);
+
+	$save->setChunk("compressedData",	$newCompressedData);
+	$save->setChunk("compressedSize",	$compressedSize);
+	$save->setChunk("decompressedSize",	strlen($newDecompressed)       );
+	$save->setChunk("length",			strlen($newCompressedData) + 19);
+	$save->setChunk("lengthdiv4",		ceil($save->getChunk("length") / 4));
+
+	$filename    = substr_replace($argv[1], ".new", -4, 0);
 	print "Saving new save data to $filename\n";
 	file_put_contents($filename, $save->getData());
 
 	print "Done, maybe\n";
 
-	dumpSaveStuff($save);
+	print "save comparison --- | new file ---------------- | old file -----------------\n";
+	dumpSaveStuff($save, $oldSave);
 
 
 	print "\n";
-
-
-	function dumpSaveStuff($s) {
-
-		$read		= array(
-			'unknown0'			=> "h",
-			'xorkey'			=> "h",
-			'unknown1'			=> "i",
-			'unknown2'			=> "i",
-			'unknown3'			=> "i",
-			'length'			=> "i",
-			'magic'				=> "h",
-			'unknown4'			=> "i",
-			'decompressedSize'	=> "i",
-			'data'				=> "l",
-			'compressedSize'	=> "i",
-			'compressedData'	=> "l",
-			);
-
-		foreach ($read as $chunk => $type) {
-
-			$d	= $s->getChunk($chunk);
-			printf("%-20s: ", $chunk);
-			if ($type == "h") {
-				print bin2hex($d);
-			} elseif ($type == "l") {
-				print strlen($d) ." bytes (". sprintf("%6x", strlen($d)) .")";
-			} else {
-				print $d;
-			}
-
-			print "\n";
-		}
-
-	}
