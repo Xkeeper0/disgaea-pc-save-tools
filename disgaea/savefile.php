@@ -11,7 +11,7 @@
 			'xorkey'			=> array( 'start' => 0x0020, 'length' => 0x0004,	'type' => "b"),
 			'unknown1'			=> array( 'start' => 0x0024, 'length' => 0x0002,	'type' => "i"),
 			'unknown2'			=> array( 'start' => 0x0026, 'length' => 0x0002,	'type' => "i"),
-			'unknown3'			=> array( 'start' => 0x0028, 'length' => 0x0004,	'type' => "i"),
+			'lengthdiv4'		=> array( 'start' => 0x0028, 'length' => 0x0004,	'type' => "i"),
 			'length'			=> array( 'start' => 0x002c, 'length' => 0x0004,	'type' => "i"),
 			'data'				=> array( 'start' => 0x0030, 'length' => false,		'type' => "b"),
 			'magic'				=> array( 'start' => 0x0030, 'length' => 0x0008,	'type' => "b" ),
