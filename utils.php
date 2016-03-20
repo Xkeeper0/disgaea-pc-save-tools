@@ -14,14 +14,52 @@
 	spl_autoload_register('autoloadClass');
 
 
-	function sjis($str) {
-		$str	= iconv("shift-jis", "utf8", trim($str));
-		return Normalizer::normalize($str, Normalizer::NFKC);
+	function sjis($str, $normalize = false) {
+		$str	= @iconv("shift-jis", "utf8", trim($str));
+		if ($normalize && class_exists("Normalizer")) {
+			return Normalizer::normalize($str, Normalizer::NFKC);
+		} elseif ($normalize) {
+			throw new \Exception("Can't normalize SJIS fullwidth, install php5-intl or set normalize=false");
+		}
+		return $str;
+
+	}
+
+	function tosjis($str) {
+		return iconv("utf8", "shift-jis", trim($str));
 	}
 
 
 	function unimplemented($m) {
 		throw new \Exception("Unimplemented: $m");
+	}
+
+
+
+	function makevdf($s) {
+
+		$fs		= strlen($s);
+		$sha	= sha1($s);
+
+		return <<<E
+"405900"
+{
+	"SAVE000.DAT"
+	{
+		"root"		"0"
+		"size"		"$fs"
+		"localtime"		"1458477666"
+		"time"		"1458477664"
+		"remotetime"		"0"
+		"sha"		"$sha"
+		"syncstate"		"3"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+}
+E;
+
+
 	}
 
 
