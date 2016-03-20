@@ -55,6 +55,15 @@
 			return $this->_data;
 		}
 
+		/**
+		 * Set data function.
+		 * Sets $this->_data.
+		 * Stunningly useful, trust me
+		 */
+		public function setData($data) {
+			$this->_data	= $data;
+		}
+
 
 		/**
 		 * Get a piece of information from the raw data
