@@ -5,7 +5,7 @@
 	class DataStruct {
 
 		protected	$_data			= "";
-		protected	$_origin		= null;
+		protected	$_parent		= null;
 		protected	$_index			= null;
 
 		protected	$_dataChunks	= array(
@@ -21,9 +21,9 @@
 			);
 
 
-		public function __construct($data, $origin = null, $index = null) {
+		public function __construct($data, $parent = null, $index = null) {
 			$this->_data	= $data;
-			$this->_origin	= $origin;
+			$this->_parent	= $parent;
 			$this->_index	= $index;
 
 
@@ -36,8 +36,8 @@
 		}
 
 
-		public function setOrigin($obj, $chunk, $index = null) {
-			$this->_origin	= array(
+		public function setParent($obj, $chunk, $index = null) {
+			$this->_parent	= array(
 				'obj'	=> $obj,
 				'chunk'	=> $chunk,
 				);
@@ -108,7 +108,7 @@
 					$d	= substr($from, $v['start'] + $v['length'] * $i, $v['length']);
 					$out[$i]	= $this->_getChunkValue($d, $v['type']);
 					if ($out[$i] instanceof DataStruct) {
-						$out[$i]->setOrigin($this, $what, $i);
+						$out[$i]->setparent($this, $what, $i);
 					}
 				}
 
@@ -119,7 +119,7 @@
 				$d	= substr($from, $v['start'], $v['length']);
 				$out	= $this->_getChunkValue($d, $v['type']);
 				if ($out instanceof DataStruct) {
-					$out->setOrigin($this, $what);
+					$out->setparent($this, $what);
 				}
 				return $out;
 
@@ -330,13 +330,19 @@
 
 
 			// Update the parent object with the new data
-			if ($this->_origin) {
-				print "Updating parent object [". get_class($this->_origin['obj']) ."] (". $this->_origin['chunk'] ."[". ($this->_index !== null ? $this->_index : "--") ."])...\n";
-				$this->_origin['obj']->setChunk($this->_origin['chunk'], $this, $this->_index);
-			}
+			$this->updateParent();
 
 		}
 
+
+
+		public function updateParent() {
+			if ($this->_parent) {
+				print "Updating parent object [". get_class($this->_parent['obj']) ."] (". $this->_parent['chunk'] ."[". ($this->_index !== null ? $this->_index : "--") ."])...\n";
+				$this->_parent['obj']->setChunk($this->_parent['chunk'], $this, $this->_index);
+			}
+
+		}
 
 
 		public function getMap() {
