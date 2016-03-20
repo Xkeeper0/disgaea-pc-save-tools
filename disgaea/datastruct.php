@@ -291,7 +291,10 @@
 
 				case "s":
 					// "string" type; reconvert into fullwidth SJIS-encoded text(?)
-					unimplemented("Cannot re-encode SJIS text yet");
+					$newRaw	= str_pad(tosjis($newValue), $v['length'], "\x00");
+					if (strlen($newRaw) > $v['length']) {
+						throw new \Exception("New data length (". strlen($newRaw) .") longer than original data length (". $v['length'] .")");
+					}
 					break;
 
 
