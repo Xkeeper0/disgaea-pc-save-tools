@@ -29,11 +29,11 @@
 			'title'				=> array( 'start' => 0x0269, 'length' => 0x001a, 'type' => "s"),
 			'unknown02'			=> array( 'start' => 0x028a, 'length' => 0x0002, 'type' => "i"),
 			
-			'unknown03'			=> array( 'start' => 0x028c, 'length' => 0x0020, 'type' => "h"),
+			'unknown03'			=> array( 'start' => 0x028c, 'length' => 0x0020, 'type' => "b"),
 			
 			'resistances'		=> array( 'start' => 0x02ac, 'length' => 0x0002, 'type' => "i", 'count' => 0x0005),
 			
-			'unknown04'			=> array( 'start' => 0x02b6, 'length' => 0x006e, 'type' => "h"),
+			'unknown04'			=> array( 'start' => 0x02b6, 'length' => 0x006e, 'type' => "b"),
 			
 			// todo: split this into its own class, probably
 			'skillexp'			=> array( 'start' => 0x0324, 'length' => 0x0004, 'type' => "i", 'count' => 0x0060),
@@ -46,18 +46,49 @@
 			'stats'				=> array( 'start' => 0x05cc, 'length' => 0x0020, 'type' => '\Disgaea\Data\Stats'),
 			'realstats'			=> array( 'start' => 0x05ec, 'length' => 0x0020, 'type' => '\Disgaea\Data\Stats'),
 			
-			'unknown05'			=> array( 'start' => 0x060c, 'length' => 0x0020, 'type' => "h"),
+			'unknown05'			=> array( 'start' => 0x060c, 'length' => 0x0020, 'type' => "b"),
 			
 			'mana'				=> array( 'start' => 0x062c, 'length' => 0x0004, 'type' => "i"),
 			
-			'unknown06'			=> array( 'start' => 0x0630, 'length' => 0x0004, 'type' => "i"),
-			'unknown07'			=> array( 'start' => 0x0634, 'length' => 0x000C, 'type' => "h"),
-			'unknown08'			=> array( 'start' => 0x0640, 'length' => 0x0018, 'type' => "h"),
+			'unknown06'			=> array( 'start' => 0x0630, 'length' => 0x0018, 'type' => "b"),
+
+			// Levels and rate of weapon mastery. Setting mastery enables anyone to equip weapons
+			// Actual WEXP not known yet
+			// Mastery rate is ~0 to 30-ish, higher is better
+			'weaponmasterylv'	=> array( 'start' => 0x0648, 'length' => 0x0008, 'type' => "b"),
+			'weaponmasteryrate'	=> array( 'start' => 0x0650, 'length' => 0x0008, 'type' => "b"),
 			
 			'basestats'			=> array( 'start' => 0x0658, 'length' => 0x0008, 'type' => '\Disgaea\Data\Stats\CharacterBaseStats'),
 			
+			// 1 to 9999
 			'level'				=> array( 'start' => 0x0660, 'length' => 0x0002, 'type' => "i"),
-			'unknown09'			=> array( 'start' => 0x0662, 'length' => 0x0056, 'type' => "h"),
+			// ?
+			'unknown07'			=> array( 'start' => 0x0662, 'length' => 0x0002, 'type' => "b"),
+			// Class
+			'class'				=> array( 'start' => 0x0664, 'length' => 0x0002, 'type' => "i"),
+			// "base class" - castle NPCs use the generic monster types, mages are always "Red ___",
+			// etc. doesn't seem to affect anything???
+			'class2'			=> array( 'start' => 0x0666, 'length' => 0x0002, 'type' => "i"),
+			// Index into which row of char.dat to get skill learning data from
+			// Yes this is stupid as all hell given each class has an ID *anyway*. NIS!
+			'skilltree'			=> array( 'start' => 0x0668, 'length' => 0x0002, 'type' => "b"),
+
+
+			'unknown08'			=> array( 'start' => 0x066a, 'length' => 0x001e, 'type' => "b"),
+			'unknown09'			=> array( 'start' => 0x0688, 'length' => 0x0020, 'type' => "b"),
+			'unknown10'			=> array( 'start' => 0x06a8, 'length' => 0x0010, 'type' => "b"),
+
+			'basejm'			=> array( 'start' => 0x067a, 'length' => 0x0001, 'type' => "i"),
+			'jm'				=> array( 'start' => 0x067b, 'length' => 0x0001, 'type' => "i"),
+			'basemv'			=> array( 'start' => 0x067c, 'length' => 0x0001, 'type' => "i"),
+			'mv'				=> array( 'start' => 0x067d, 'length' => 0x0001, 'type' => "i"),
+
+			'counter'			=> array( 'start' => 0x067e, 'length' => 0x0001, 'type' => "i"),
+
+
+			// Rank in Dark Senate
+			'senaterank'		=> array( 'start' => 0x068d, 'length' => 0x0001, 'type' => "i"),
+
 
 			);
 
