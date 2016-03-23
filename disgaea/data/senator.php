@@ -42,29 +42,19 @@
 			$f		= ($f & 0x7F) - 0x80;
 
 			$out	= "???";
-			if ($f < -40) {
-				$out    = "Loathe";
-			} elseif ($f < -26) {
-				$out    = "Total opposition";
-			} elseif ($f < -16) {
-				$out    = "Strongly against";
-			} elseif ($f < -11) {
-				$out    = "Against";
-			} elseif ($f < -5) {
-				$out    = "Leaning no";
-			} elseif ($f < 4) {
-				$out    = "Either way";
-			} elseif ($f < 11) {
-				$out    = "Leaning yes";
-			} elseif ($f < 15) {
-				$out    = "In favor of";
-			} elseif ($f < 25) {
-				$out    = "Strongly for";
-			} elseif ($f < 39) {
-				$out    = "Total support";
-			} elseif ($f < 127) {
-				$out    = "Love";
-			}
+
+			if     ($f < -40)	$out	= "Loathe";
+			elseif ($f < -26)	$out	= "Total opposition";
+			elseif ($f < -16)	$out	= "Strongly against";
+			elseif ($f < -11)	$out	= "Against";
+			elseif ($f <  -5)	$out	= "Leaning no";
+			elseif ($f <   4)	$out	= "Either way";
+			elseif ($f <  11)	$out	= "Leaning yes";
+			elseif ($f <  15)	$out	= "In favor of";
+			elseif ($f <  25)	$out	= "Strongly for";
+			elseif ($f <  39)	$out	= "Total support";
+			elseif ($f < 127)	$out	= "Love";
+
 
 			return sprintf("(%4d) %s", $f, $out);
 		}
