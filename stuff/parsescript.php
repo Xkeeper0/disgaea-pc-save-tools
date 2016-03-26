@@ -175,6 +175,13 @@
 						break;
 
 
+					case 0xd0:
+						// Unknown, but has 4 bytes of arguments after the opcode
+						$argv		= $this->_getArgsI(4);
+						printf("Opcode DD [%s]", $this->_prettyArgs($argv));
+						break;
+
+
 					case 0xdd:
 						// This apparently sets the top screen text in Disgaea DS
 						// Does not appear to be used in original, PSP, or PC
