@@ -167,6 +167,17 @@
 						break;
 
 
+					case 0x81:
+						// Gives the player an inventory item of some kind
+						// First two bytes = type, second two = ??
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$item		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
+						$extra		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
+						$itemn		= \Disgaea\Data\Id::getItem($class);
+						printf("Give item: %s (%d), extra = %04x", $itemn, $item, $extra);
+						break;
+
 
 					case 0xdd:
 						// This apparently sets the top screen text in Disgaea DS
