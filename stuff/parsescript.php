@@ -48,11 +48,7 @@
 
 				$opcode		= $this->_ri();
 
-				// The choice of printing opcodes here in decimal (currently) may be confusing
-				// NIS appears to love using decimal numbers for things, and it appears that
-				// script files are no different. As they are only one byte, though,
-				// it's hard to determine if they should be displayed as one or the other
-				printf("%3d: ", $opcode);
+				printf("%02x: ", $opcode);
 
 				if ($opcode == 0x09) {
 					// Gross hack: 09 is the "end if" block; decrease indent before printing
@@ -158,24 +154,24 @@
 						break;
 
 
-					case 0x5c:
-						// Used before 0x32 opcodes. Patterns appear to match text colors
-						// Format not currently understood
-						$argc	= $this->_ri();
-						$argv	= $this->_getArgsI($argc);
-						printf("Set text display color?   [%s]", $this->_prettyArgs($argv));
-						break;
-
-
-					case 0x81:
+					case 0x51:
 						// Gives the player an inventory item of some kind
 						// First two bytes = type, second two = ??
 						$argc		= $this->_ri();
 						$argv		= $this->_getArgsB($argc);
 						$item		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
 						$extra		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
-						$itemn		= \Disgaea\Data\Id::getItem($class);
+						$itemn		= \Disgaea\Data\Id::getItem($item);
 						printf("Give item: %s (%d), extra = %04x", $itemn, $item, $extra);
+						break;
+
+
+					case 0x5c:
+						// Used before 0x32 opcodes. Patterns appear to match text colors
+						// Format not currently understood
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsI($argc);
+						printf("Set text display color?   [%s]", $this->_prettyArgs($argv));
 						break;
 
 
