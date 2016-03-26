@@ -494,5 +494,6 @@
 0837	Cha-Ching Hand
 0838	Bandits Hand
 0839	Awesome Hand
+083A	Dream Hand
 
 0899	Mr. Gency's Exit
