@@ -35,7 +35,7 @@
 	for ($i = 0; $i < $count; $i++) {
 		$offsets[$i]		= \Disgaea\DataStruct::getLEValue(substr($file, $offsetofs + 4 * $i, 0x00000004));
 		$ids[$i]			= \Disgaea\DataStruct::getLEValue(substr($file, $idsofs + 4 * $i, 0x00000004));
-		
+
 		if (isset($idmap[$ids[$i]])) {
 			print("Duplicate script ID encountered: ". $idmap[$ids[$i]] ."\n");
 		}
@@ -46,13 +46,13 @@
 	$data		= substr($file, $dataofs);
 
 	for ($i = 0; $i < $count; $i++) {
-		printf("%04x: ofs %08x   id %08x   ", $i, $offsets[$i], $ids[$i]);
+		printf("%04x: ofs %08x   id %8d   ", $i, $offsets[$i], $ids[$i]);
 
 		$len		= isset($offsets[$i + 1]) ? ($offsets[$i + 1] - $offsets[$i]) : strlen($data);
 
 		$scriptdata	= substr($data, $offsets[$i], $len);
 
-		file_put_contents("stuff/scripts/". sprintf("%08x", $ids[$i]) .".bin", $scriptdata);
+		file_put_contents("stuff/scripts/". sprintf("%08d", $ids[$i]) .".bin", $scriptdata);
 
 		print "\n";
 
