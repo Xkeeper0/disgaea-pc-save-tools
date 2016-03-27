@@ -244,6 +244,36 @@
 						break;
 
 
+					case 0x6d:
+						// Set NPC???
+						// Class ID is (class ID) + (10000 x Team) because NIS
+						// 
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$class		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
+						$level		= \Disgaea\DataStruct::getLEValue(substr($argv, 3, 2));
+						$team		= \Disgaea\DataStruct::getLEValue(substr($argv, 5, 1));
+						$rclassid	= $class % 10000;		// god damnit NIS.
+						$rclass10k	= floor($class / 10000) * 10000;
+						$classn	= \Disgaea\Data\Id::getClass($rclassid);
+
+						$teamnames	= array("Ally", "Neutral", "Enemy");
+						if     ($team == 0) $teamn = "Ally";
+						elseif ($team == 1) $teamn = "Enemy";
+						elseif ($team == 2) $teamn = "Neutral";
+						else                $teamn = "Unknown Team ($team)";
+						printf("Set NPC? Index %d, %s '%s' (#%d + %d), Level %d",
+							$index,
+							$teamn,
+							$classn,
+							$rclassid,
+							$rclass10k,
+							$level
+							);
+						break;
+
+
 					case 0xd0:
 						// Unknown, but has 4 bytes of arguments after the opcode
 						$argv		= $this->_getArgsI(4);
