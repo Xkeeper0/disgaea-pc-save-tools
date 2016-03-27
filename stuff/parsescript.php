@@ -13,12 +13,12 @@
 	chdir("../");
 	include "utils.php";
 
-	print "Now is the time of parsing!! Ready! Parser X!\nToday's file is $argv[1].\n\n";
+	print "Parsing script file $argv[1] ...\n\n";
 
 	$script	= new Script($file);
 	$script->parse();
 
-	die("\n----------------------------------\nEnd\n\n");
+	die("\n----------------------------------\nEnd\n");
 
 
 	// E_FUTURE: Move this to the \Disgaea namespace, possibly under \Data
@@ -119,6 +119,58 @@
 						$argv	= $this->_getArgsB($argc);
 						$sid	= \Disgaea\DataStruct::getLEValue($argv);
 						print "Call Script: $sid";
+						break;
+
+
+					case 0x28:
+						// Lock or unlock the camera (?)
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsI($argc);
+						if ($argv[0] == 0) {
+							print "Unlock camera position";
+						} elseif ($argv[0] == 1) {
+							print "Lock camera position";
+						} else {
+							print "Unknown camera operation ($argv[0])";
+						}
+
+						if ($argc !== 1) {
+							printf(" - args[%02x]: %s", $argc, $this->_prettyArgs($argv));
+						}
+						break;
+
+
+					case 0x2C:
+						// Set camera focus point
+						// arg0: ? (does not seem to do anything?)
+						// arg4: time it takes to pan to this point
+						// other args are coordinates; excuse goofy graph:
+						//         v-arg2 (height)
+						//  arg1\ -1
+						//      -1 | 1
+						//        \|/
+						//         0 
+						//        /|\
+						//      -1 | 1
+						//  arg3/  1
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 2, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 4, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 6, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
+							);
+						printf("Change camera focus: unk: %d -- %d, %d, %d -- time: %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3],
+							$args[4]
+							);
+
 						break;
 
 
