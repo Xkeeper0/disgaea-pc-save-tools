@@ -216,11 +216,15 @@
 
 
 
-		public static function getLEValue($s) {
+		public static function getLEValue($s, $signed = false) {
 			$t	= str_split($s);
 			$o	= 0;
 			foreach ($t as $i => $v) {
 				$o	+= ord($v) << ($i * 8);
+			}
+
+			if ($signed && $o >= (0x80 * pow(0x100, strlen($s) - 1))) {
+				$o	-= pow(0x100, strlen($s));
 			}
 
 			return $o;
