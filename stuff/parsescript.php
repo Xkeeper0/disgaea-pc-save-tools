@@ -140,6 +140,24 @@
 						break;
 
 
+					case 0x29:
+						// Set camera zoom level
+						// Anything below 0 will cause... problems
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2)),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
+							);
+						printf("Change camera zoom: zoomlevel: %d -- time: %d", 
+							$args[1],
+							$args[0]
+							);
+
+						break;
+
+
 					case 0x2C:
 						// Set camera focus point
 						// arg0: ? (does not seem to do anything?)
@@ -155,13 +173,12 @@
 						//  arg3/  1
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsB($argc);
-
 						$args	= array(
 							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 2, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 4, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 6, 2), true),
-							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2)),
 							);
 						printf("Change camera focus: unk: %d -- %d, %d, %d -- time: %d", 
 							$args[0],
