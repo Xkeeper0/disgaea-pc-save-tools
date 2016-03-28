@@ -67,6 +67,15 @@
 
 				switch ($opcode) {
 
+					case 0x01:
+						// Sleep
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$time	= \Disgaea\DataStruct::getLEValue($argv);
+						printf("Sleep %.2fs (%d)", $time / 60, $time);
+						break;
+
+
 					case 0x02:
 						// Usually appears at end of script or at the end of a 07 block
 						$this->_genericOpcode("End of script");
@@ -74,8 +83,14 @@
 
 
 					case 0x05:
-						// Often appears at the start of a script, but not always???
-						$this->_genericOpcode("Start of script");
+						// Unconfirmed
+						$this->_genericOpcode("Lock player controls?");
+						break;
+
+
+					case 0x06:
+						// Unconfirmed
+						$this->_genericOpcode("Unlock player controls?");
 						break;
 
 
