@@ -141,16 +141,17 @@
 						// Lock or unlock the camera (?)
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
+						$mode	= "Unknown operation %argv[0]";
 						if ($argv[0] == 0) {
-							print "Unlock camera position";
+							$mode	= "Unlock position";
 						} elseif ($argv[0] == 1) {
-							print "Lock camera position";
-						} else {
-							print "Unknown camera operation ($argv[0])";
+							$mode	= "Lock position";
 						}
 
 						if ($argc !== 1) {
-							printf(" - args[%02x]: %s", $argc, $this->_prettyArgs($argv));
+							printf("Camera: %s - args[%02x]: %s", $mode, $argc, $this->_prettyArgs($argv));
+						} else {
+							printf("Camera: %s", $mode);
 						}
 						break;
 
@@ -165,7 +166,7 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2)),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
 							);
-						printf("Change camera zoom: zoomlevel: %d -- time: %d", 
+						printf("Camera: Change zoom: zoomlevel: %d -- time: %d", 
 							$args[1],
 							$args[0]
 							);
@@ -195,7 +196,7 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv, 6, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2)),
 							);
-						printf("Change camera focus: unk: %d -- %d, %d, %d -- time: %d", 
+						printf("Camera: Change focus point: unk: %d -- %d, %d, %d -- time: %d", 
 							$args[0],
 							$args[1],
 							$args[2],
