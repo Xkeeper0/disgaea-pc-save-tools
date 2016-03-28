@@ -386,8 +386,8 @@
 					case 0x98:
 						$argc		= $this->_ri();
 						$argv		= $this->_getArgsB($argc);
-						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
-						$talkid		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 3));
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
+						$talkid		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 3));
 						printf("Actor #%d - Set talk.dat dialogue id to %d", $index, $talkid);
 						break;
 
