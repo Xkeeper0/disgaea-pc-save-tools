@@ -276,7 +276,7 @@
 						// "Set Chapter"?
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
-						printf("Set chapter? %d", $argv[0]);
+						printf("Set chapter? unk %d, %d", $argv[0], $argv[1]);
 						break;
 
 
