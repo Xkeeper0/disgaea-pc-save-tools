@@ -202,6 +202,18 @@
 						break;
 
 
+					case 0x42:
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$class		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
+						printf("Actor #%d - Set sprite? class/sprite %d", $index, $class);
+						break;
+
+
+					// Opcode 4E is currently down by 6E
+
+
 					case 0x4f:
 						// Adds (or removes) a character to the current party based on class ID
 						// If class is negative, then remove abs(class) instead of adding it
@@ -223,6 +235,16 @@
 						break;
 
 
+					case 0x50:
+						// Give the player some HL
+						// May or may not be signed, unsure
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$hl			= \Disgaea\DataStruct::getLEValue($argv, true);
+						printf("Give player %d HL", $hl);
+						break;
+
+
 					case 0x51:
 						// Gives the player an inventory item of some kind
 						// First two bytes = type, second two = ??
@@ -235,12 +257,64 @@
 						break;
 
 
+					case 0x5a:
+						// "Set Chapter"?
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsI($argc);
+						printf("Set chapter? %d", $argv[0]);
+						break;
+
+
 					case 0x5c:
 						// Used before 0x32 opcodes. Patterns appear to match text colors
 						// Format not currently understood
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
 						printf("Set text display color?   [%s]", $this->_prettyArgs($argv));
+						break;
+
+					case 0x65:
+						// Moves actor by index
+						// Same coordinate system and general function as the camera move
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  6, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  8, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 10, 2)),
+							);
+						printf("Actor #%d - Change position -- unk %d -- %d, %d, %d -- time: %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3],
+							$args[4],
+							$args[5]
+							);
+						break;
+
+
+					case 0x67:
+						// Unknown. Does something with actors. Possibly animation index?
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 1)),
+							);
+						printf("Actor #%d - Change animation?: unk %d, %d, %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3],
+							$args[4]
+							);
 						break;
 
 
@@ -263,7 +337,7 @@
 						elseif ($team == 1) $teamn = "Enemy";
 						elseif ($team == 2) $teamn = "Neutral";
 						else                $teamn = "Unknown Team ($team)";
-						printf("Set NPC? Index %d, %s '%s' (#%d + %d), Level %d",
+						printf("Actor #%d - Set Party? NPC: %s '%s' (#%d + %d), Level %d",
 							$index,
 							$teamn,
 							$classn,
@@ -271,6 +345,50 @@
 							$rclass10k,
 							$level
 							);
+						break;
+
+
+					case 0x4e:
+					case 0x6e:
+						// Set actor (??)
+						// 4e version starts it at Base Panel?
+						// "Like 6D , used for Longinus and weapons in Laharl's room"
+						if ($opcode == 0x4e) $type = " at base panel";
+						$extra		= "";
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$class		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
+						$rclassid	= $class % 10000;
+						$rclass10k	= floor($class / 10000) * 10000;
+						$classn	= \Disgaea\Data\Id::getClass($rclassid);
+						printf("Actor #%d - Create actor%s? '%s' (#%d + %d)",
+							$index,
+							$extra,
+							$classn,
+							$rclassid,
+							$rclass10k
+							);
+						break;
+
+
+					case 0x73:
+						// Rotate actor? Angle seems to often be 90 or -90 (surprise)
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$time		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
+						$angle		= \Disgaea\DataStruct::getLEValue(substr($argv, 3, 2), true);
+						printf("Actor #%d - Rotate: angle %d, time %d", $index, $angle, $time);
+						break;
+
+
+					case 0x98:
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$talkid		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 3));
+						printf("Actor #%d - Set talk.dat dialogue id to %d", $index, $talkid);
 						break;
 
 
