@@ -78,19 +78,19 @@
 
 					case 0x02:
 						// Usually appears at end of script or at the end of a 07 block
-						$this->_genericOpcode("End of script");
+						$this->_genericOpcode("End of Script");
 						break;
 
 
 					case 0x05:
 						// Unconfirmed
-						$this->_genericOpcode("Lock player controls?");
+						$this->_genericOpcode("Lock Player Controls");
 						break;
 
 
 					case 0x06:
 						// Unconfirmed
-						$this->_genericOpcode("Unlock player controls?");
+						$this->_genericOpcode("Unlock Player Controls");
 						break;
 
 
@@ -125,6 +125,21 @@
 						print "End If";
 						$this->_r();
 						break;
+						
+						
+					case 0x0a:
+						// Fade Out/In
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 2)),
+							);
+						printf("Screen Fade -- unk: %d, Time: %d", 
+							$args[0],
+							$args[1]
+							);
+						break;
 
 
 					case 0x12:
@@ -135,17 +150,49 @@
 						$sid	= \Disgaea\DataStruct::getLEValue($argv);
 						print "Call Script: $sid";
 						break;
+						
+						
+					case 0x15:
+						// Load Map
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							);
+						printf("Load Map: %d", 
+							$args[0]
+							);
+						break;
+						
+					
+					case 0x27:
+						// Move Cursor?
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 2)),
+							);
+						printf("Cursor -- unk: %d, X Pos: %d, Y Pos: %d, Time: %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3]
+							);
+						break;
 
 
 					case 0x28:
 						// Lock or unlock the camera (?)
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
-						$mode	= "Unknown operation %argv[0]";
+						$mode	= "Unknown Operation %argv[0]";
 						if ($argv[0] == 0) {
-							$mode	= "Unlock position";
+							$mode	= "Unlock Position";
 						} elseif ($argv[0] == 1) {
-							$mode	= "Lock position";
+							$mode	= "Lock Position";
 						}
 
 						if ($argc !== 1) {
@@ -166,7 +213,7 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2)),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
 							);
-						printf("Camera: Change zoom: zoomlevel: %d -- time: %d", 
+						printf("Camera -- Change Zoom: zoomlevel: %d -- time: %d", 
 							$args[1],
 							$args[0]
 							);
@@ -196,7 +243,7 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv, 6, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2)),
 							);
-						printf("Camera: Change focus point: unk: %d -- %d, %d, %d -- time: %d", 
+						printf("Camera -- Change Focus Point: unk: %d -- %d, %d, %d -- time: %d", 
 							$args[0],
 							$args[1],
 							$args[2],
@@ -204,6 +251,25 @@
 							$args[4]
 							);
 
+						break;
+						
+						
+					case 0x2D:
+						// Lock Coordinates?
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 1)),
+							);
+						printf("Actor #%d - Lock Coordinates? -- %d, %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3]
+							);
 						break;
 
 
@@ -214,7 +280,35 @@
 						$tl		= $this->_ri();
 						$ta		= $this->_getArgsB($tl);
 						$text	= sjis($ta);
-						printf("Display text: \"%s\"", $text);
+						printf("Display Text: \"%s\"", $text);
+						break;
+						
+						
+					case 0x39:
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							);
+						printf("Set Background -- %d, %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2]
+							);
+						break;
+						
+						
+					case 0x3A:
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							);
+						printf("Clear Background? -- %d", 
+							$args[0]
+							);
 						break;
 
 
@@ -223,7 +317,7 @@
 						$argv		= $this->_getArgsB($argc);
 						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
 						$class		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
-						printf("Actor #%d - Set sprite? class/sprite %d", $index, $class);
+						printf("Actor #%d - Set Sprite? Class/Sprite %d", $index, $class);
 						break;
 
 
@@ -247,7 +341,7 @@
 						}
 						$level		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
 						$classn		= \Disgaea\Data\Id::getClass(abs($class));
-						printf("%s character: %s (%d), Lv %d", $action, $classn, $class, $level);
+						printf("%s Character: %s (%d), Lv %d", $action, $classn, $class, $level);
 						break;
 
 
@@ -257,7 +351,7 @@
 						$argc		= $this->_ri();
 						$argv		= $this->_getArgsB($argc);
 						$hl			= \Disgaea\DataStruct::getLEValue($argv, true);
-						printf("Give player %d HL", $hl);
+						printf("Give Player %d HL", $hl);
 						break;
 
 
@@ -269,7 +363,7 @@
 						$item		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
 						$extra		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
 						$itemn		= \Disgaea\Data\Id::getItem($item);
-						printf("Give item: %s (%d), extra = %04x", $itemn, $item, $extra);
+						printf("Give Item: %s (%d), extra = %04x", $itemn, $item, $extra);
 						break;
 
 
@@ -277,7 +371,7 @@
 						// "Set Chapter"?
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
-						printf("Set chapter? unk %d, %d", $argv[0], $argv[1]);
+						printf("Set Chapter? unk %d, %d", $argv[0], $argv[1]);
 						break;
 
 
@@ -286,7 +380,7 @@
 						// Format not currently understood
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
-						printf("Set text display color?   [%s]", $this->_prettyArgs($argv));
+						printf("Set Text Display Color?   [%s]", $this->_prettyArgs($argv));
 						break;
 
 					case 0x65:
@@ -302,7 +396,7 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv,  8, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv, 10, 2)),
 							);
-						printf("Actor #%d - Change position -- unk %d -- %d, %d, %d -- time: %d", 
+						printf("Actor #%d - Change Position -- unk %d -- X Pos: %d, Z Pos: %d, Y Pos: %d -- Time: %d", 
 							$args[0],
 							$args[1],
 							$args[2],
@@ -311,10 +405,10 @@
 							$args[5]
 							);
 						break;
-
-
-					case 0x67:
-						// Unknown. Does something with actors. Possibly animation index?
+						
+					
+					case 0x66:
+						// Lock Rotation
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsB($argc);
 						$args	= array(
@@ -324,7 +418,28 @@
 							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 1)),
 							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 1)),
 							);
-						printf("Actor #%d - Change animation?: unk %d, %d, %d, %d", 
+						printf("Actor #%d - Lock Rotation? -- %d, %d, %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3],
+							$args[4]
+							);
+						break;
+						
+						
+					case 0x67:
+						// Unknown Opcode
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 1)),
+							);
+						printf("Actor #%d - Unknown Opcode -- %d, %d, %d, %d", 
 							$args[0],
 							$args[1],
 							$args[2],
@@ -333,6 +448,23 @@
 							);
 						break;
 
+
+					case 0x6b:
+						// Set Animation
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							);
+						printf("Actor #%d - Change Animation -- Anim ID: %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2]
+							);
+						break;
+						
 
 					case 0x6d:
 						// Set NPC???
@@ -353,7 +485,7 @@
 						elseif ($team == 1) $teamn = "Enemy";
 						elseif ($team == 2) $teamn = "Neutral";
 						else                $teamn = "Unknown Team ($team)";
-						printf("Actor #%d - Set Party? NPC: %s '%s' (#%d + %d), Level %d",
+						printf("Actor #%d - Create Actor: %s '%s' (#%d + %d), Level %d",
 							$index,
 							$teamn,
 							$classn,
@@ -378,7 +510,7 @@
 						$rclassid	= $class % 10000;
 						$rclass10k	= floor($class / 10000) * 10000;
 						$classn	= \Disgaea\Data\Id::getClass($rclassid);
-						printf("Actor #%d - Create actor%s? '%s' (#%d + %d)",
+						printf("Actor #%d - Create Prop%s '%s' (#%d + %d)",
 							$index,
 							$extra,
 							$classn,
@@ -395,7 +527,38 @@
 						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
 						$time		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
 						$angle		= \Disgaea\DataStruct::getLEValue(substr($argv, 3, 2), true);
-						printf("Actor #%d - Rotate: angle %d, time %d", $index, $angle, $time);
+						printf("Actor #%d - Rotate: Angle - %d Degrees, Time - %d", $index, $angle, $time);
+						break;
+						
+					case 0x7A:
+						// Set Color
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$unk1		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 1));
+						$red		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
+						$green		= \Disgaea\DataStruct::getLEValue(substr($argv, 4, 2));
+						$blue		= \Disgaea\DataStruct::getLEValue(substr($argv, 6, 2));
+						$alpha		= \Disgaea\DataStruct::getLEValue(substr($argv, 8, 2));
+						$unk2		= \Disgaea\DataStruct::getLEValue(substr($argv, 10, 2));
+						printf("Actor #%d - Change Color Settings -- Red: %d, Green: %d, Blue: %d, Alpha: %d, unk1: %d, unk2: %d", $index, $red, $green, $blue, $alpha, $unk1, $unk2);
+						break;
+						
+						
+					case 0x8c:
+						// Play Sound
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 2)),
+							);
+						printf("Play Sound Effect -- Sound ID: %d, unk: %d, Volume?: %d", 
+							$args[0],
+							$args[1],
+							$args[2]
+							);
 						break;
 
 
@@ -404,7 +567,41 @@
 						$argv		= $this->_getArgsB($argc);
 						$index		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
 						$talkid		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 3));
-						printf("Actor #%d - Set talk.dat dialogue id to %d", $index, $talkid);
+						printf("Actor #%d - Set TALK Dialogue ID: %d", $index, $talkid);
+						break;
+						
+						
+					case 0xc8:
+						// Hardcoded Handler
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 1)),
+							);
+						printf("Hardcoded Handler -- Trigger Effect: %d, %d, %d, %d, %d", 
+							$args[0],
+							$args[1],
+							$args[2],
+							$args[3],
+							$args[4]
+							);
+						break;
+						
+						
+					case 0xc9:
+						// Call UI
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							);
+						printf("Call UI -- %d", 
+							$args[0]
+							);
 						break;
 
 
@@ -421,14 +618,14 @@
 						$tl		= $this->_ri();
 						$ta		= $this->_getArgsB($tl);
 						$text	= sjis($ta);
-						printf("Set title?: \"%s\"", $text);
+						printf("Set Title?: \"%s\"", $text);
 						break;
 
 
 
 					default:
 						// Handle unknown opcodes by simply dumping their identifiers and arguments
-						$this->_genericOpcode(sprintf("Unknown opcode %02x", $opcode));
+						$this->_genericOpcode(sprintf("Unknown Opcode %02x", $opcode));
 						break;
 
 				}
