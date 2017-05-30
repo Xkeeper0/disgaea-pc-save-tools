@@ -171,9 +171,9 @@
 						$argv	= $this->_getArgsB($argc);
 						$args	= array(
 							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
-							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 2), true),
 							\Disgaea\DataStruct::getLEValue(substr($argv,  2, 2), true),
-							\Disgaea\DataStruct::getLEValue(substr($argv,  3, 2)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  4, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  6, 2)),
 							);
 						printf("Cursor -- unk: %d, X Pos: %d, Y Pos: %d, Time: %d", 
 							$args[0],
