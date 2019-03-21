@@ -127,7 +127,7 @@
 						break;
 						
 						
-					case 0x0a:
+					case 0x0A:
 						// Fade Out/In
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsB($argc);
@@ -140,6 +140,35 @@
 							$args[1]
 							);
 						break;
+						
+						
+					case 0x0C:
+						// Screen Shake
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$unk		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 1));
+						$intensity	= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 1));
+						$length		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
+						printf("Screen Shake -- Intensity:%d, Length:%d", $intensity, $length);
+						break;
+						
+						
+					//case 0x0D:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x0F:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x10:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
 					case 0x12:
@@ -150,6 +179,18 @@
 						$sid	= \Disgaea\DataStruct::getLEValue($argv);
 						print "Call Script: $sid";
 						break;
+						
+						
+					//case 0x13:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x14:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 						
 						
 					case 0x15:
@@ -164,6 +205,119 @@
 							);
 						break;
 						
+						
+					case 0x16:
+						// Load Item World Map
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							);
+						printf("Load Item World Map: %d", 
+							$args[0]
+							);
+						break;
+						
+						
+					case 0x17:
+						// Clear Map of Actors?
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 2)),
+							);
+						printf("Clear Map: %d", 
+							$args[0]
+							);
+						break;
+						
+						
+					case 0x18:
+						// Reset Map Camera and Player Position?
+						$this->_genericOpcode("Reset Player Position");
+						break;
+						
+						
+					//case 0x19:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x1A:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					case 0x1B:
+						// Change Background Color
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$unk		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
+						$red1		= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 1));
+						$green1		= \Disgaea\DataStruct::getLEValue(substr($argv, 3, 1));
+						$blue1		= \Disgaea\DataStruct::getLEValue(substr($argv, 4, 1));
+						$red2		= \Disgaea\DataStruct::getLEValue(substr($argv, 5, 1));
+						$green2		= \Disgaea\DataStruct::getLEValue(substr($argv, 6, 1));
+						$blue2		= \Disgaea\DataStruct::getLEValue(substr($argv, 7, 1));
+						$red3		= \Disgaea\DataStruct::getLEValue(substr($argv, 8, 1));
+						$green3		= \Disgaea\DataStruct::getLEValue(substr($argv, 9, 1));
+						$blue3		= \Disgaea\DataStruct::getLEValue(substr($argv, 10, 1));
+						$red4		= \Disgaea\DataStruct::getLEValue(substr($argv, 11, 1));
+						$green4		= \Disgaea\DataStruct::getLEValue(substr($argv, 12, 1));
+						$blue4		= \Disgaea\DataStruct::getLEValue(substr($argv, 13, 1));
+						printf("Change Background Color -- Top-Left Color - R:%d G:%d B:%d, Top-Right Color - R:%d G:%d B:%d, Bottom-Left Color - R:%d G:%d B:%d, Bottom-Right Color: R:%d G:%d B:%d", $red1, $green1, $blue1, $red2, $green2, $blue2, $red3, $green3, $blue3, $red4, $green4, $blue4);
+						break;
+						
+						
+					//case 0x1D:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x1E:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x1F:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x20:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x21:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x22:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x25:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x26:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+												
 					
 					case 0x27:
 						// Move Cursor?
@@ -203,15 +357,30 @@
 						break;
 
 
+					// Opcode 29 is currently down by 2B
+						
+						
+					case 0x2A:
+						// Rotate Camera
+						$argc		= $this->_ri();
+						$argv		= $this->_getArgsB($argc);
+						$time		= \Disgaea\DataStruct::getLEValue(substr($argv, 0, 2));
+						$rotatey	= \Disgaea\DataStruct::getLEValue(substr($argv, 2, 2));
+						$rotatex	= \Disgaea\DataStruct::getLEValue(substr($argv, 4, 2));
+						$unk		= \Disgaea\DataStruct::getLEValue(substr($argv, 6, 2));
+						printf("Rotate Camera -- Time:%d, Rotate Y:%d, Rotate X:%d, Unknown:%d", $time, $rotatey, $rotatex, $unk);
+						break;
+						
+					
 					case 0x29:
-						// Set camera zoom level
-						// Anything below 0 will cause... problems
+					case 0x2B:
+						// Set camera zoom level?
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsB($argc);
 
 						$args	= array(
 							\Disgaea\DataStruct::getLEValue(substr($argv, 0, 2)),
-							\Disgaea\DataStruct::getLEValue(substr($argv, 8, 2), true),
+							\Disgaea\DataStruct::getLEValue(substr($argv, 2, 2), true),
 							);
 						printf("Camera -- Change Zoom: zoomlevel: %d -- time: %d", 
 							$args[1],
@@ -271,6 +440,24 @@
 							$args[3]
 							);
 						break;
+						
+						
+					//case 0x2F:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x30:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x31:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
 					case 0x32:
@@ -282,6 +469,24 @@
 						$text	= sjis($ta);
 						printf("Display Text: \"%s\"", $text);
 						break;
+						
+						
+					//case 0x33:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x35:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x36:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 						
 						
 					case 0x39:
@@ -310,6 +515,48 @@
 							$args[0]
 							);
 						break;
+						
+						
+					//case 0x3B:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x3C:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x3D:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x3E:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x3F:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x40:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x41:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
 					case 0x42:
@@ -319,12 +566,72 @@
 						$class		= \Disgaea\DataStruct::getLEValue(substr($argv, 1, 2));
 						printf("Actor #%d - Set Sprite? Class/Sprite %d", $index, $class);
 						break;
+						
+						
+					//case 0x43:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x44:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x45:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x47:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x48:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x49:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x4A:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x4B:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x4C:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x4D:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
 					// Opcode 4E is currently down by 6E
 
 
-					case 0x4f:
+					case 0x4F:
 						// Adds (or removes) a character to the current party based on class ID
 						// If class is negative, then remove abs(class) instead of adding it
 						// If the given class exists in the "extra party" area, it will be moved (?)
@@ -365,23 +672,96 @@
 						$itemn		= \Disgaea\Data\Id::getItem($item);
 						printf("Give Item: %s (%d), extra = %04x", $itemn, $item, $extra);
 						break;
+						
+						
+					//case 0x52:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x56:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x57:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x58:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x59:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
-					case 0x5a:
+					case 0x5A:
 						// "Set Chapter"?
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
 						printf("Set Chapter? unk %d, %d", $argv[0], $argv[1]);
 						break;
+						
+						
+					//case 0x5B:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
 
 
-					case 0x5c:
+					case 0x5C:
 						// Used before 0x32 opcodes. Patterns appear to match text colors
 						// Format not currently understood
 						$argc	= $this->_ri();
 						$argv	= $this->_getArgsI($argc);
 						printf("Set Text Display Color?   [%s]", $this->_prettyArgs($argv));
 						break;
+						
+						
+					//case 0x5D:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x5E:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x5F:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x60:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x62:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x63:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
 
 					case 0x65:
 						// Moves actor by index
@@ -465,6 +845,12 @@
 							);
 						break;
 						
+						
+					//case 0x6C:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
 
 					case 0x6d:
 						// Set NPC???
@@ -530,6 +916,19 @@
 						printf("Actor #%d - Rotate: Angle - %d Degrees, Time - %d", $index, $angle, $time);
 						break;
 						
+						
+					//case 0x75:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
+					//case 0x76:
+						// Unused? Not found in any script.
+						//$this->_genericOpcode("Unused Opcode");
+						//break;
+						
+						
 					case 0x7A:
 						// Set Color
 						$argc		= $this->_ri();
@@ -558,6 +957,21 @@
 							$args[0],
 							$args[1],
 							$args[2]
+							);
+						break;
+						
+						
+					case 0x91:
+						// Play Music
+						$argc	= $this->_ri();
+						$argv	= $this->_getArgsB($argc);
+						$args	= array(
+							\Disgaea\DataStruct::getLEValue(substr($argv,  0, 1)),
+							\Disgaea\DataStruct::getLEValue(substr($argv,  1, 1)),
+							);
+						printf("Play Music -- Music ID: %d, Volume?: %d", 
+							$args[0],
+							$args[1]
 							);
 						break;
 
